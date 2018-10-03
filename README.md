@@ -1,4 +1,2 @@
-# TechUt
-Technologie utrwalania dla języka Java V sem.
-# Autor
-## Dawid Bińkuś
+# TechUt - Dawid Bińkuś
+Teorie utrwalania dla języka Java
