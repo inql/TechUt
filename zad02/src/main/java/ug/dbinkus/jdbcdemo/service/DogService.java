@@ -1,6 +1,6 @@
-package com.example.jdbcdemo.service;
+package ug.dbinkus.jdbcdemo.service;
 
-import com.example.jdbcdemo.domain.Dog;
+import ug.dbinkus.jdbcdemo.domain.Dog;
 
 import java.sql.*;
 
@@ -36,21 +36,16 @@ public class DogService {
         }
     }
 
-    public void clearDog(){
-
-    }
-
     public void addDog(Dog dog) throws SQLException {
         String addDogSql = "INSERT INTO Dog (name ,date_of_birth ,is_vaccinated, weight, sex) VALUES " +
                 "(\'" + dog.getName() + "\' ,\'" + dog.getDateOfBirth() + "\' ," + dog.isVaccinated() + " ," + dog.getWeight() + " ,\'" + dog.getSex() + "\')";
         statement.executeUpdate(addDogSql);
     }
 
+    //todo: implement method deleteDog
     public void deleteDog(Dog dog) throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT id FROM Dog WHERE name="+dog.getName());
         String deleteDogSql = "DELETE FROM Dog WHERE id=";
         statement.executeUpdate(deleteDogSql);
     }
-
-
 }

@@ -1,10 +1,8 @@
-package com.example.jdbcdemo;
+package ug.dbinkus.jdbcdemo;
 
-import com.example.jdbcdemo.domain.Dog;
-import com.example.jdbcdemo.service.DogService;
+import ug.dbinkus.jdbcdemo.domain.Dog;
+import ug.dbinkus.jdbcdemo.service.DogService;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
@@ -13,7 +11,7 @@ public class Main {
 
         DogService dogService = new DogService();
         Dog burekDog = new Dog("Burek","2018-01-01",true,25.4,'m');
-        dogService.addDog("Burek2","2018-01-01",true,25.4,'m');
+        dogService.addDog(burekDog);
 
 
 
