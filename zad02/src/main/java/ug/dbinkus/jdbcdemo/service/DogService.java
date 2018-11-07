@@ -14,6 +14,9 @@ public interface DogService {
     void clearDogs();
     List<Dog> getAllDogs() throws SQLException;
     void addAllDogs(List<Dog> dogList);
+    Dog findDogById(long id);
+    Dog findDogByName(String name);
+
 
 
 
