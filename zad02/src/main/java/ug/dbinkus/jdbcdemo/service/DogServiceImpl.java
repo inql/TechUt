@@ -105,6 +105,7 @@ public class DogServiceImpl implements DogService{
                 addDogPreparedStatement.setBoolean(3,dog.isVaccinated());
                 addDogPreparedStatement.setDouble(4,dog.getWeight());
                 addDogPreparedStatement.setString(5,String.valueOf(dog.getSex()));
+                addDogPreparedStatement.executeUpdate();
             }
             connection.commit();
 

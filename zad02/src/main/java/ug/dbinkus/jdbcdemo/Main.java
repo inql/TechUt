@@ -4,6 +4,7 @@ import ug.dbinkus.jdbcdemo.domain.Dog;
 import ug.dbinkus.jdbcdemo.service.DogServiceImpl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
 
@@ -11,7 +12,14 @@ public class Main {
 
         DogServiceImpl dogServiceImpl = new DogServiceImpl();
 
-        //Sam
+        List<Dog> dogList = dogServiceImpl.getAllDogs();
+
+        //Sample data
+        for(int i =0; i<10; i++){
+            dogList.add(new Dog("Reksio"+(i+1),"2018-01-01",i%2==0,23+i,'m'));
+        }
+
+        dogServiceImpl.addAllDogs(dogList);
 
 
 
