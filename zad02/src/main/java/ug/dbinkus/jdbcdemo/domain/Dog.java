@@ -10,6 +10,18 @@ public class Dog {
     private double weight;
     private char sex;
 
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", isVaccinated=" + isVaccinated +
+                ", weight=" + weight +
+                ", sex=" + sex +
+                "}\n";
+    }
+
     public Dog(String name, String dateOfBirth, boolean isVaccinated, double weight, char sex) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;

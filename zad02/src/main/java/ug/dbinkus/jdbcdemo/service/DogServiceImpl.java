@@ -1,5 +1,6 @@
 package ug.dbinkus.jdbcdemo.service;
 
+import ug.dbinkus.jdbcdemo.SortingMode;
 import ug.dbinkus.jdbcdemo.domain.Dog;
 
 import java.sql.*;
@@ -19,6 +20,8 @@ public class DogServiceImpl implements DogService{
     private PreparedStatement getAllDogsPreparedStatement;
     private PreparedStatement addDogPreparedStatement;
     private PreparedStatement deleteAllDogsPreparedStatement;
+    private PreparedStatement deleteDogPreparedStatement;
+    private PreparedStatement updateDogPreparedStatement;
 
     public DogServiceImpl(){
         try{
@@ -40,6 +43,9 @@ public class DogServiceImpl implements DogService{
             addDogPreparedStatement = connection.prepareStatement("INSERT INTO Dog(name,date_of_birth,is_vaccinated,weight,sex) VALUES (?,?,?,?,?)");
             deleteAllDogsPreparedStatement = connection.prepareStatement("DELETE FROM Dog");
             getAllDogsPreparedStatement = connection.prepareStatement("SELECT id,name,date_of_birth,is_vaccinated,weight,sex FROM DOG");
+            deleteDogPreparedStatement = connection.prepareStatement("DELETE FROM Dog WHERE id = ?");
+            updateDogPreparedStatement = connection.prepareStatement("UPDATE DOG WHERE id = ? SET name=?, date_of_birth=?, is_vaccinated " +
+                    "=?, weight=?, sex=?");
 
             getAllDogs();
 
@@ -126,11 +132,7 @@ public class DogServiceImpl implements DogService{
         try {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE id="+id);
             if(resultSet.first())
-                return new Dog(resultSet.getLong(1), resultSet.getString("name"),
-                        resultSet.getString("date_of_birth"),
-                        resultSet.getBoolean("is_vaccinated"),
-                        resultSet.getDouble("weight"),
-                        resultSet.getString("sex").charAt(0));
+                return getDogById(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -139,7 +141,46 @@ public class DogServiceImpl implements DogService{
 
     @Override
     public Dog findDogByName(String name) {
+        try{
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE name="+name);
+            if(resultSet.first())
+                return getDogById(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
+    }
+
+    @Override
+    public Dog removeDog(Dog dog) {
+        try{
+            deleteDogPreparedStatement.setString(1,String.valueOf(dog.getId()));
+            deleteDogPreparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dog;
+    }
+
+    @Override
+    public List<Dog> getAllVaccinatedDogs(String sortingColumn, SortingMode sortingMode) {
+        List<Dog> vaccinatedDogs = new ArrayList<>();
+        try{
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE is_vaccinated = true ORDER BY "+sortingColumn+ " "+sortingMode);
+            while(resultSet.next()){
+                vaccinatedDogs.add(getDogById(resultSet));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return vaccinatedDogs;
+    }
+
+    private Dog getDogById(ResultSet resultSetDog) throws SQLException {
+        return new Dog(resultSetDog.getLong(1),resultSetDog.getString(2),
+                    resultSetDog.getString(3),resultSetDog.getBoolean(4),
+                resultSetDog.getDouble(5),resultSetDog.getString(6).charAt(0));
+
     }
 
 }

@@ -1,5 +1,6 @@
 package ug.dbinkus.jdbcdemo.service;
 
+import ug.dbinkus.jdbcdemo.SortingMode;
 import ug.dbinkus.jdbcdemo.domain.Dog;
 
 import java.sql.Connection;
@@ -16,6 +17,8 @@ public interface DogService {
     void addAllDogs(List<Dog> dogList);
     Dog findDogById(long id);
     Dog findDogByName(String name);
+    Dog removeDog(Dog dog);
+    List<Dog> getAllVaccinatedDogs(String sortingColumn, SortingMode sortingMode);
 
 
 

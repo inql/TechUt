@@ -22,6 +22,8 @@ public class Main {
 
         dogServiceImpl.addAllDogs(dogList);
 
+        System.out.println(dogServiceImpl.getAllVaccinatedDogs("weight",SortingMode.DESCENDING));
+
 
 
     }
