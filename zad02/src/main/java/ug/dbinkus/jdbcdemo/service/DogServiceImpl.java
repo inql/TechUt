@@ -44,8 +44,8 @@ public class DogServiceImpl implements DogService{
             deleteAllDogsPreparedStatement = connection.prepareStatement("DELETE FROM Dog");
             getAllDogsPreparedStatement = connection.prepareStatement("SELECT id,name,date_of_birth,is_vaccinated,weight,sex FROM DOG");
             deleteDogPreparedStatement = connection.prepareStatement("DELETE FROM Dog WHERE id = ?");
-            updateDogPreparedStatement = connection.prepareStatement("UPDATE DOG WHERE id = ? SET name=?, date_of_birth=?, is_vaccinated " +
-                    "=?, weight=?, sex=?");
+            updateDogPreparedStatement = connection.prepareStatement("UPDATE DOG SET name=?, date_of_birth=?, is_vaccinated " +
+                    "=?, weight=?, sex=? WHERE id=?");
 
             getAllDogs();
 
@@ -115,6 +115,7 @@ public class DogServiceImpl implements DogService{
                 addDogPreparedStatement.executeUpdate();
             }
             connection.commit();
+            connection.setAutoCommit(true);
 
         }catch (SQLException e){
             try{
@@ -131,7 +132,7 @@ public class DogServiceImpl implements DogService{
     public Dog findDogById(long id) {
         try {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE id="+id);
-            if(resultSet.first())
+            if(resultSet.next())
                 return getDogById(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,7 +144,7 @@ public class DogServiceImpl implements DogService{
     public Dog findDogByName(String name) {
         try{
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE name="+name);
-            if(resultSet.first())
+            if(resultSet.next())
                 return getDogById(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,6 +161,27 @@ public class DogServiceImpl implements DogService{
             e.printStackTrace();
         }
         return dog;
+    }
+
+    @Override
+    public Dog updateDog(Dog dog) {
+        try{
+            //update in database
+            updateDogPreparedStatement.setLong(6,dog.getId());
+            updateDogPreparedStatement.setString(1,dog.getName());
+            updateDogPreparedStatement.setString(2,dog.getDateOfBirth());
+            updateDogPreparedStatement.setBoolean(3,dog.isVaccinated());
+            updateDogPreparedStatement.setDouble(4,dog.getWeight());
+            updateDogPreparedStatement.setString(5,String.valueOf(dog.getSex()));
+            updateDogPreparedStatement.executeUpdate();
+            connection.commit();
+            //if successful, find existing dog in application and change his values
+            return findDogById(dog.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     @Override

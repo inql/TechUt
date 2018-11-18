@@ -18,6 +18,7 @@ public interface DogService {
     Dog findDogById(long id);
     Dog findDogByName(String name);
     Dog removeDog(Dog dog);
+    Dog updateDog(Dog dog);
     List<Dog> getAllVaccinatedDogs(String sortingColumn, SortingMode sortingMode);
 
 
