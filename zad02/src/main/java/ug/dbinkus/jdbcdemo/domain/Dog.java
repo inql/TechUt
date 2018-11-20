@@ -2,7 +2,6 @@ package ug.dbinkus.jdbcdemo.domain;
 
 public class Dog {
 
-    private static long counter = 0;
     private long id;
     private String name;
     private String dateOfBirth;
@@ -28,7 +27,7 @@ public class Dog {
         this.isVaccinated = isVaccinated;
         this.weight = weight;
         this.sex = sex;
-        id = counter++;
+        id = 0;
     }
 
     public Dog(long id, String name, String dateOfBirth, boolean isVaccinated, double weight, char sex){
@@ -40,6 +39,8 @@ public class Dog {
     public long getId() {
         return id;
     }
+
+    public void setId(long id) {this.id = id;}
 
     public String getName() {
         return name;
