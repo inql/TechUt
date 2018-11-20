@@ -60,7 +60,7 @@ public class DogServiceImpl implements DogService{
         int affectedRows = addDogPreparedStatement.executeUpdate();
 
         if(affectedRows==0){
-            throw new SQLException("Creating dog failes, no rows affected.");
+            throw new SQLException("Creating dog failed, no rows affected.");
         }
 
         ResultSet generatedKeys = addDogPreparedStatement.getGeneratedKeys();
@@ -147,7 +147,7 @@ public class DogServiceImpl implements DogService{
     @Override
     public Dog findDogByName(String name) {
         try{
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE name="+name);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog where name = \'"+name+"\'");
             if(resultSet.next())
                 return getDogById(resultSet);
         } catch (SQLException e) {
@@ -227,42 +227,42 @@ public class DogServiceImpl implements DogService{
     @Override
     public List<Dog> getAllDogsLighterThan(double maxWeight, String sortingColumn, SortingMode sortingMode) {
         List<Dog> dogsLighterThan = new ArrayList<>();
-        performSelect(sortingColumn, sortingMode, dogsLighterThan, "SELECT * FROM Dog WHERE weight >"+maxWeight+" ORDER BY ");
+        performSelect(sortingColumn, sortingMode, dogsLighterThan, "SELECT * FROM Dog WHERE weight <"+maxWeight+" ORDER BY ");
         return dogsLighterThan;
     }
 
     @Override
     public List<Dog> getAllDogsWeightInRange(double minWeight, double maxWeight, String sortingColumn, SortingMode sortingMode) {
         List<Dog> dogsWeightInRange = new ArrayList<>();
-        performSelect(sortingColumn, sortingMode, dogsWeightInRange, "SELECT * FROM Dog WHERE weight BETWEEN ("+minWeight+" "+maxWeight+ ")ORDER BY ");
+        performSelect(sortingColumn, sortingMode, dogsWeightInRange, "SELECT * FROM Dog WHERE weight BETWEEN "+minWeight+"AND "+maxWeight+ " ORDER BY ");
         return dogsWeightInRange;
     }
 
     @Override
     public List<Dog> getAllDogsBornBefore(String date, String sortingColumn, SortingMode sortingMode) {
         List<Dog> dogsBornBefore = new ArrayList<>();
-        performSelect(sortingColumn, sortingMode, dogsBornBefore, "SELECT * FROM Dog WHERE date_of_birth >\""+date+"\" ORDER BY ");
+        performSelect(sortingColumn, sortingMode, dogsBornBefore, "SELECT * FROM Dog WHERE date_of_birth <\'"+date+"\' ORDER BY ");
         return dogsBornBefore;
     }
 
     @Override
     public List<Dog> getAllDogsBornAfter(String date, String sortingColumn, SortingMode sortingMode) {
         List<Dog> dogsBornAfter = new ArrayList<>();
-        performSelect(sortingColumn, sortingMode, dogsBornAfter, "SELECT * FROM Dog WHERE date_of_birth <\""+date+"\" ORDER BY ");
+        performSelect(sortingColumn, sortingMode, dogsBornAfter, "SELECT * FROM Dog WHERE date_of_birth >\'"+date+"\' ORDER BY ");
         return dogsBornAfter;
     }
 
     @Override
     public List<Dog> getAllDogsBornInRange(String from, String to, String sortingColumn, SortingMode sortingMode) {
         List<Dog> dogsBornInRange = new ArrayList<>();
-        performSelect(sortingColumn, sortingMode, dogsBornInRange, "SELECT * FROM Dog WHERE date_of_birth BETWEEN ("+from+" "+to+") ORDER BY ");
+        performSelect(sortingColumn, sortingMode, dogsBornInRange, "SELECT * FROM Dog WHERE date_of_birth BETWEEN \'"+from+"\' AND \'"+to+"\' ORDER BY ");
         return dogsBornInRange;
     }
 
     @Override
     public List<Dog> getAllDogsWithNameLike(String namePattern, String sortingColumn, SortingMode sortingMode) {
         List<Dog> dogsWithNameLike = new ArrayList<>();
-        performSelect(sortingColumn, sortingMode, dogsWithNameLike, "SELECT * FROM Dog WHERE name LIKE "+namePattern+" ORDER BY ");
+        performSelect(sortingColumn, sortingMode, dogsWithNameLike, "SELECT * FROM Dog WHERE name LIKE \'"+namePattern+"\' ORDER BY ");
         return dogsWithNameLike;
     }
 
