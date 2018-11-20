@@ -158,13 +158,16 @@ public class DogServiceImpl implements DogService{
 
     @Override
     public Dog removeDog(Dog dog) {
-        try{
-            deleteDogPreparedStatement.setString(1,String.valueOf(dog.getId()));
-            deleteDogPreparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(dog != null){
+            try{
+                deleteDogPreparedStatement.setString(1,String.valueOf(dog.getId()));
+                deleteDogPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return dog;
         }
-        return dog;
+        return null;
     }
 
     @Override
@@ -178,8 +181,7 @@ public class DogServiceImpl implements DogService{
             updateDogPreparedStatement.setDouble(4,dog.getWeight());
             updateDogPreparedStatement.setString(5,String.valueOf(dog.getSex()));
             updateDogPreparedStatement.executeUpdate();
-            connection.commit();
-            //if successful, find existing dog in application and change his values
+            //if successful, performSelect existing dog in application and change his values
             return findDogById(dog.getId());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -191,22 +193,87 @@ public class DogServiceImpl implements DogService{
     @Override
     public List<Dog> getAllVaccinatedDogs(String sortingColumn, SortingMode sortingMode) {
         List<Dog> vaccinatedDogs = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, vaccinatedDogs, "SELECT * FROM Dog WHERE is_vaccinated = true ORDER BY ");
+        return vaccinatedDogs;
+    }
+
+    @Override
+    public List<Dog> getAllNonVaccinatedDogs(String sortingColumn, SortingMode sortingMode) {
+        List<Dog> nonVaccinatedDogs = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, nonVaccinatedDogs, "SELECT * FROM Dog WHERE is_vaccinated = false ORDER BY ");
+        return nonVaccinatedDogs;    }
+
+    @Override
+    public List<Dog> getAllMaleDogs(String sortingColumn, SortingMode sortingMode) {
+        List<Dog> maleDogs = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, maleDogs, "SELECT * FROM Dog WHERE sex = 'm' ORDER BY ");
+        return maleDogs;
+    }
+
+    @Override
+    public List<Dog> getAllFemaleDogs(String sortingColumn, SortingMode sortingMode) {
+        List<Dog> femaleDogs = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, femaleDogs, "SELECT * FROM Dog WHERE sex = 'f' ORDER BY ");
+        return femaleDogs;
+    }
+
+    @Override
+    public List<Dog> getAllDogsHeavierThan(double minWeight, String sortingColumn, SortingMode sortingMode) {
+        List<Dog> dogsHeavierThan = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsHeavierThan, "SELECT * FROM Dog WHERE weight >"+minWeight+" ORDER BY ");
+        return dogsHeavierThan;
+    }
+
+    @Override
+    public List<Dog> getAllDogsLighterThan(double maxWeight, String sortingColumn, SortingMode sortingMode) {
+        List<Dog> dogsLighterThan = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsLighterThan, "SELECT * FROM Dog WHERE weight >"+maxWeight+" ORDER BY ");
+        return dogsLighterThan;
+    }
+
+    @Override
+    public List<Dog> getAllDogsWeightInRange(double minWeight, double maxWeight, String sortingColumn, SortingMode sortingMode) {
+        List<Dog> dogsWeightInRange = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsWeightInRange, "SELECT * FROM Dog WHERE weight BETWEEN ("+minWeight+" "+maxWeight+ ")ORDER BY ");
+        return dogsWeightInRange;
+    }
+
+    @Override
+    public List<Dog> getAllDogsBornBefore(String date, String sortingColumn, SortingMode sortingMode) {
+        return null;
+    }
+
+    @Override
+    public List<Dog> getAllDogsBornAfter(String date, String sortingColumn, SortingMode sortingMode) {
+        return null;
+    }
+
+    @Override
+    public List<Dog> getAllDogsBornInRange(String from, String to, String sortingColumn, SortingMode sortingMode) {
+        return null;
+    }
+
+    @Override
+    public List<Dog> getAllDogsWithNameLike(String namePattern, String sortingColumn, SortingMode sortingMode) {
+        return null;
+    }
+
+
+    private Dog getDogById(ResultSet resultSetDog) throws SQLException {
+        return new Dog(resultSetDog.getLong(1),resultSetDog.getString(2),
+                    resultSetDog.getString(3),resultSetDog.getBoolean(4),
+                resultSetDog.getDouble(5),resultSetDog.getString(6).charAt(0));
+    }
+
+    private void performSelect(String sortingColumn, SortingMode sortingMode, List<Dog> vaccinatedDogs, String s) {
         try{
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Dog WHERE is_vaccinated = true ORDER BY "+sortingColumn+ " "+sortingMode);
+            ResultSet resultSet = statement.executeQuery(s +sortingColumn+ " "+sortingMode);
             while(resultSet.next()){
                 vaccinatedDogs.add(getDogById(resultSet));
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return vaccinatedDogs;
-    }
-
-    private Dog getDogById(ResultSet resultSetDog) throws SQLException {
-        return new Dog(resultSetDog.getLong(1),resultSetDog.getString(2),
-                    resultSetDog.getString(3),resultSetDog.getBoolean(4),
-                resultSetDog.getDouble(5),resultSetDog.getString(6).charAt(0));
-
     }
 
 }

@@ -18,7 +18,7 @@ public class Main {
 
         dogServiceImpl.removeDog(dogServiceImpl.findDogById(2));
         Dog toUpdate = dogServiceImpl.findDogById(3);
-        toUpdate.setName("Zmienilem imie :)");
+        toUpdate.setWeight(999.99);
         toUpdate = dogServiceImpl.updateDog(toUpdate);
         System.out.println(toUpdate);
         System.out.println(dogServiceImpl.getAllVaccinatedDogs("weight",SortingMode.DESCENDING));

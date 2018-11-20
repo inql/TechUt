@@ -20,6 +20,19 @@ public interface DogService {
     Dog removeDog(Dog dog);
     Dog updateDog(Dog dog);
     List<Dog> getAllVaccinatedDogs(String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllNonVaccinatedDogs(String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllMaleDogs(String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllFemaleDogs(String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsHeavierThan(double minWeight, String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsLighterThan(double maxWeight, String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsWeightInRange(double minWeight, double maxWeight, String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsBornBefore(String date, String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsBornAfter(String date, String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsBornInRange(String from,String to, String sortingColumn, SortingMode sortingMode);
+    List<Dog> getAllDogsWithNameLike(String namePattern, String sortingColumn, SortingMode sortingMode);
+
+
+
 
 
 
