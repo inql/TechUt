@@ -240,22 +240,30 @@ public class DogServiceImpl implements DogService{
 
     @Override
     public List<Dog> getAllDogsBornBefore(String date, String sortingColumn, SortingMode sortingMode) {
-        return null;
+        List<Dog> dogsBornBefore = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsBornBefore, "SELECT * FROM Dog WHERE date_of_birth >\""+date+"\" ORDER BY ");
+        return dogsBornBefore;
     }
 
     @Override
     public List<Dog> getAllDogsBornAfter(String date, String sortingColumn, SortingMode sortingMode) {
-        return null;
+        List<Dog> dogsBornAfter = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsBornAfter, "SELECT * FROM Dog WHERE date_of_birth <\""+date+"\" ORDER BY ");
+        return dogsBornAfter;
     }
 
     @Override
     public List<Dog> getAllDogsBornInRange(String from, String to, String sortingColumn, SortingMode sortingMode) {
-        return null;
+        List<Dog> dogsBornInRange = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsBornInRange, "SELECT * FROM Dog WHERE date_of_birth BETWEEN ("+from+" "+to+") ORDER BY ");
+        return dogsBornInRange;
     }
 
     @Override
     public List<Dog> getAllDogsWithNameLike(String namePattern, String sortingColumn, SortingMode sortingMode) {
-        return null;
+        List<Dog> dogsWithNameLike = new ArrayList<>();
+        performSelect(sortingColumn, sortingMode, dogsWithNameLike, "SELECT * FROM Dog WHERE name LIKE "+namePattern+" ORDER BY ");
+        return dogsWithNameLike;
     }
 
 
