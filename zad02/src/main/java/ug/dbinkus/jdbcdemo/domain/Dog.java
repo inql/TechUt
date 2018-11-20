@@ -15,14 +15,14 @@ public class Dog {
 
     @Override
     public String toString() {
-        return "Dog{" +
+        return "\nDog{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateOfBirth='" + new SimpleDateFormat("yyyy-MM-dd").format(dateOfBirth) + '\'' +
                 ", isVaccinated=" + isVaccinated +
                 ", weight=" + weight +
                 ", sex=" + sex +
-                "}\n";
+                "}";
     }
 
     public Dog(String name, String dateOfBirth, boolean isVaccinated, double weight, char sex) {
