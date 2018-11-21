@@ -9,11 +9,10 @@ import java.util.List;
 
 public interface DogService {
 
-    void addDog(Dog dog) throws SQLException;
-    void deleteDog(Dog dog) throws SQLException;
+    void addDog(Dog dog);
     Connection getConnection();
     void clearDogs();
-    List<Dog> getAllDogs() throws SQLException;
+    List<Dog> getAllDogs();
     void addAllDogs(List<Dog> dogList);
     Dog findDogById(long id);
     Dog findDogByName(String name);

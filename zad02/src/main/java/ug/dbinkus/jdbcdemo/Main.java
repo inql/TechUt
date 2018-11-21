@@ -69,11 +69,13 @@ public class Main {
         System.out.println(dogService.getAllDogsWithNameLike("L%","date_of_birth",SortingMode.DESCENDING));
 
         //find by name test
+        System.out.println("\nFound dog with name \"Burek\"");
         System.out.println(dogService.findDogByName("Burek"));
         
         //delete dog test
+        System.out.println("\nFound dog with id = 2");
         dogService.removeDog(dogService.findDogById(2));
-
+        System.out.println("\nAll dogs listed:");
         System.out.println(dogService.getAllDogs());
 
         //clear dogs test

@@ -51,32 +51,30 @@ public class DogServiceImpl implements DogService{
         }
     }
 
-    public void addDog(Dog dog) throws SQLException {
-        addDogPreparedStatement.setString(1,dog.getName());
-        addDogPreparedStatement.setString(2,dog.getDateOfBirth());
-        addDogPreparedStatement.setBoolean(3,dog.isVaccinated());
-        addDogPreparedStatement.setDouble(4,dog.getWeight());
-        addDogPreparedStatement.setString(5, String.valueOf(dog.getSex()));
-        int affectedRows = addDogPreparedStatement.executeUpdate();
+    public void addDog(Dog dog) {
+        try {
+            addDogPreparedStatement.setString(1,dog.getName());
+            addDogPreparedStatement.setString(2,dog.getDateOfBirth());
+            addDogPreparedStatement.setBoolean(3,dog.isVaccinated());
+            addDogPreparedStatement.setDouble(4,dog.getWeight());
+            addDogPreparedStatement.setString(5, String.valueOf(dog.getSex()));
+            int affectedRows = addDogPreparedStatement.executeUpdate();
 
-        if(affectedRows==0){
-            throw new SQLException("Creating dog failed, no rows affected.");
+            if(affectedRows==0){
+                throw new SQLException("Creating dog failed, no rows affected.");
+            }
+
+            ResultSet generatedKeys = addDogPreparedStatement.getGeneratedKeys();
+            if(generatedKeys.next()){
+                dog.setId(generatedKeys.getLong(1));
+            }
+            else {
+                throw new SQLException("Creating dog failed, no ID obtained");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        ResultSet generatedKeys = addDogPreparedStatement.getGeneratedKeys();
-        if(generatedKeys.next()){
-            dog.setId(generatedKeys.getLong(1));
-        }
-        else {
-            throw new SQLException("Creating dog failed, no ID obtained");
-        }
-    }
-
-    //todo: implement method deleteDog
-    public void deleteDog(Dog dog) throws SQLException {
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM Dog WHERE name="+dog.getName());
-        String deleteDogSql = "DELETE FROM Dog WHERE id="+resultSet.getLong("id");
-        statement.executeUpdate(deleteDogSql);
     }
 
     @Override
@@ -94,18 +92,24 @@ public class DogServiceImpl implements DogService{
     }
 
     @Override
-    public List<Dog> getAllDogs() throws SQLException {
+    public List<Dog> getAllDogs() {
         List<Dog> dogs = new ArrayList<>();
-        ResultSet dogsResultSet = getAllDogsPreparedStatement.executeQuery();
-        while(dogsResultSet.next()){
-            Dog dog = new Dog(dogsResultSet.getLong(1), dogsResultSet.getString("name"),
-                    dogsResultSet.getString("date_of_birth"),
-                    dogsResultSet.getBoolean("is_vaccinated"),
-                    dogsResultSet.getDouble("weight"),
-                    dogsResultSet.getString("sex").charAt(0));
-            dogs.add(dog);
+        ResultSet dogsResultSet = null;
+        try {
+            dogsResultSet = getAllDogsPreparedStatement.executeQuery();
+            while(dogsResultSet.next()){
+                Dog dog = new Dog(dogsResultSet.getLong(1), dogsResultSet.getString("name"),
+                        dogsResultSet.getString("date_of_birth"),
+                        dogsResultSet.getBoolean("is_vaccinated"),
+                        dogsResultSet.getDouble("weight"),
+                        dogsResultSet.getString("sex").charAt(0));
+                dogs.add(dog);
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return dogs;
 
     }
