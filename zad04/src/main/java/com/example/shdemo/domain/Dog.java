@@ -1,12 +1,10 @@
 package com.example.shdemo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.text.ParseException;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Dog {
@@ -17,7 +15,8 @@ public class Dog {
     private Double weight;
     private Character sex;
     private Date dateOfBirth;
-
+    private List<Toy> toyList = new ArrayList<Toy>();
+    private Breed breed;
     
 
     @Override
@@ -80,5 +79,23 @@ public class Dog {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Toy> getToyList() {
+        return toyList;
+    }
+
+    public void setToyList(List<Toy> toyList) {
+        this.toyList = toyList;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
     }
 }

@@ -4,7 +4,6 @@
 	<groupId>com.example</groupId>
 	<artifactId>shdemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<properties>
 		<!-- Shared version number properties -->
 		<org.springframework.version>3.0.6.RELEASE</org.springframework.version>
