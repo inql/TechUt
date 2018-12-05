@@ -16,8 +16,7 @@ public class Dog {
     private Character sex;
     private Date dateOfBirth;
     private List<Toy> toyList = new ArrayList<Toy>();
-    private Breed breed;
-    
+    private Description description;
 
     @Override
     public String toString() {
@@ -90,12 +89,12 @@ public class Dog {
         this.toyList = toyList;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    public Breed getBreed() {
-        return breed;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Description getDescription() {
+        return description;
     }
 
-    public void setBreed(Breed breed) {
-        this.breed = breed;
+    public void setDescription(Description description) {
+        this.description = description;
     }
 }

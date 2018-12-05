@@ -1,9 +1,7 @@
 package com.example.shdemo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Breed {
@@ -11,6 +9,8 @@ public class Breed {
     private Long id;
     private String name;
     private String description;
+    private List<Dog> dogList;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,5 +36,15 @@ public class Breed {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Dog> getDogList() {
+        return dogList;
+    }
+
+    public void setDogList(List<Dog> dogList) {
+        this.dogList = dogList;
     }
 }
