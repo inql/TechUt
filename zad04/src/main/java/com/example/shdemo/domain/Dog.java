@@ -7,6 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "dog.getAll",query = "Select d from Dog d")
+        }
+)
 public class Dog {
 
     private Long id;
@@ -40,6 +45,7 @@ public class Dog {
         this.id = id;
     }
 
+    @Column(unique = true, nullable = false)
     public String getName() {
         return name;
     }
