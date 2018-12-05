@@ -1,6 +1,7 @@
 package com.example.shdemo.service;
 
 import com.example.shdemo.domain.Dog;
+import com.example.shdemo.domain.Owner;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -44,6 +45,27 @@ public class DogServiceImpl implements DogService {
     public void deleteDog(Dog dog) {
         dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dog.getId());
         sessionFactory.getCurrentSession().delete(dog);
+
+    }
+
+    @Override
+    public Long addOwner(Owner owner) {
+        owner.setId(null);
+        return (Long) sessionFactory.getCurrentSession().save(owner);
+    }
+
+    @Override
+    public List getAllOwners() {
+        return sessionFactory.getCurrentSession().getNamedQuery("owner.getAll").list();
+    }
+
+    @Override
+    public Owner getOwnerById(Long id) {
+        return null;
+    }
+
+    @Override
+    public void deleteOwner() {
 
     }
 }
