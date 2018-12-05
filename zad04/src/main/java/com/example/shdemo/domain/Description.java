@@ -1,8 +1,7 @@
 package com.example.shdemo.domain;
 
 
-import org.hibernate.annotations.Entity;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +24,6 @@ public class Description {
 
     public String getDescription(){return description;}
 
-
+    public void setDescription(String description){this.description = description;}
 
 }

@@ -89,7 +89,7 @@ public class Dog {
         this.toyList = toyList;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     public Description getDescription() {
         return description;
     }
