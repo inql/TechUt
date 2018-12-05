@@ -34,4 +34,9 @@ public class DogServiceImpl implements DogService {
     public List<Dog> getAllDogs() {
         return sessionFactory.getCurrentSession().getNamedQuery("dogs.getAll").list();
     }
+
+    @Override
+    public Dog getDogByName(String name) {
+        return (Dog) sessionFactory.getCurrentSession().getNamedQuery("dogs.getById").setString("name",name).uniqueResult();
+    }
 }

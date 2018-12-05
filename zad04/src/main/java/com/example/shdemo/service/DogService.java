@@ -8,6 +8,7 @@ public interface DogService {
 
     void addDog(Dog dog);
     List getAllDogs();
+    Dog getDogByName(String name);
 
 
 

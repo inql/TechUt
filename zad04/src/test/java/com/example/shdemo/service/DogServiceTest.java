@@ -1,5 +1,7 @@
 package com.example.shdemo.service;
 
+import static org.junit.Assert.assertEquals;
+
 import com.example.shdemo.domain.Dog;
 
 import org.junit.Test;
@@ -48,7 +50,12 @@ public class DogServiceTest {
 
         dogService.addDog(dogToAdd);
 
+        Dog addedDog = dogService.getDogByName(NAME);
 
+        assertEquals(NAME,addedDog.getName());
+        assertEquals(IS_VACCINATED,addedDog.getVaccinated());
+        assertEquals(WEIGHT,addedDog.getWeight());
+        assertEquals(SEX,addedDog.getSex());
 
 
 
