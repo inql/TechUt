@@ -38,7 +38,6 @@ public class Breed {
         this.description = description;
     }
 
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Dog> getDogList() {
         return dogList;

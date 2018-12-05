@@ -39,4 +39,11 @@ public class DogServiceImpl implements DogService {
     public Dog getDogByName(String name) {
         return (Dog) sessionFactory.getCurrentSession().getNamedQuery("dog.getByName").setString("name",name).uniqueResult();
     }
+
+    @Override
+    public void deleteDog(Dog dog) {
+        dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dog.getId());
+        sessionFactory.getCurrentSession().delete(dog);
+
+    }
 }

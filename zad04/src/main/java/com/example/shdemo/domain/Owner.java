@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "owner.getAll",query = "Select o from Owner o"),
+        @NamedQuery(name = "owner.getById",query = "Select o from Owner o where :id=o.id")
+})
 public class Owner {
 
     private Long id;

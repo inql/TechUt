@@ -12,9 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,10 +23,10 @@ public class DogServiceTest {
     @Autowired
     DogService dogService;
 
-    private final String NAME = "Burek";
-    private final Boolean IS_VACCINATED = true;
-    private final Double WEIGHT = 23.5;
-    private final Character SEX = 'c';
+    private final String DOG_NAME = "Burek";
+    private final Boolean DOG_IS_VACCINATED = true;
+    private final Double DOG_WEIGHT = 23.5;
+    private final Character DOG_SEX = 'c';
 
     @Test
     public void addDogTest(){
@@ -37,25 +34,30 @@ public class DogServiceTest {
         List<Dog> dogList = dogService.getAllDogs();
 
         for (Dog dog: dogList){
-            if(dog.getName().equals(NAME)){
-                //todo: deletion
+            if(dog.getName().equals(DOG_NAME)){
+                dogService.deleteDog(dog);
             }
         }
 
         Dog dogToAdd = new Dog();
-        dogToAdd.setName(NAME);
-        dogToAdd.setVaccinated(IS_VACCINATED);
-        dogToAdd.setWeight(WEIGHT);
-        dogToAdd.setSex(SEX);
+        dogToAdd.setName(DOG_NAME);
+        dogToAdd.setVaccinated(DOG_IS_VACCINATED);
+        dogToAdd.setWeight(DOG_WEIGHT);
+        dogToAdd.setSex(DOG_SEX);
 
         dogService.addDog(dogToAdd);
 
-        Dog addedDog = dogService.getDogByName(NAME);
+        Dog addedDog = dogService.getDogByName(DOG_NAME);
 
-        assertEquals(NAME,addedDog.getName());
-        assertEquals(IS_VACCINATED,addedDog.getVaccinated());
-        assertEquals(WEIGHT,addedDog.getWeight());
-        assertEquals(SEX,addedDog.getSex());
+        assertEquals(DOG_NAME,addedDog.getName());
+        assertEquals(DOG_IS_VACCINATED,addedDog.getVaccinated());
+        assertEquals(DOG_WEIGHT,addedDog.getWeight());
+        assertEquals(DOG_SEX,addedDog.getSex());
+    }
+
+    @Test
+    public void addOwnerTest(){
+
 
 
 

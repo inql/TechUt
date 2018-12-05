@@ -62,7 +62,7 @@ public class SellingMangerHibernateImpl implements SellingManager {
 	}
 
 	@Override
-	public Person findClientByPin(String pin) {
+public Person findClientByPin(String pin) {
 		return (Person) sessionFactory.getCurrentSession().getNamedQuery("person.byPin").setString("pin", pin).uniqueResult();
 	}
 
