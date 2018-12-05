@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Component
 @Transactional
 public class DogServiceImpl implements DogService {
@@ -25,5 +27,11 @@ public class DogServiceImpl implements DogService {
     public void addDog(Dog dog) {
         dog.setId(null);
         sessionFactory.getCurrentSession().persist(dog);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Dog> getAllDogs() {
+        return sessionFactory.getCurrentSession().getNamedQuery("dogs.getAll").list();
     }
 }
