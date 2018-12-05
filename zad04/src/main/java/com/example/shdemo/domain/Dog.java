@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "dog.getAll",query = "Select d from Dog d")
+                @NamedQuery(name = "dog.getAll",query = "Select d from Dog d"),
+                @NamedQuery(name = "dog.getByName", query = "Select d from Dog d where d.name = :name")
         }
 )
 public class Dog {
