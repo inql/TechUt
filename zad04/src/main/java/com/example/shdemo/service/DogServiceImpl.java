@@ -32,11 +32,11 @@ public class DogServiceImpl implements DogService {
     @Override
     @SuppressWarnings("unchecked")
     public List<Dog> getAllDogs() {
-        return sessionFactory.getCurrentSession().getNamedQuery("dogs.getAll").list();
+        return sessionFactory.getCurrentSession().getNamedQuery("dog.getAll").list();
     }
 
     @Override
     public Dog getDogByName(String name) {
-        return (Dog) sessionFactory.getCurrentSession().getNamedQuery("dogs.getById").setString("name",name).uniqueResult();
+        return (Dog) sessionFactory.getCurrentSession().getNamedQuery("dog.getByName").setString("name",name).uniqueResult();
     }
 }

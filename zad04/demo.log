@@ -3146,3 +3146,596 @@ Caused by: org.hibernate.AnnotationException: @OneToOne or @ManyToOne on com.exa
 2018-12-05 16:49:40,413 INFO  [TableMetadata]  - foreign keys: []
 2018-12-05 16:49:40,413 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10082_10083]
 2018-12-05 16:49:40,547 INFO  [SessionFactoryImpl]  - closing
+2018-12-05 17:20:14,747 INFO  [Version]  - Hibernate Commons Annotations 3.2.0.Final
+2018-12-05 17:20:14,750 INFO  [Environment]  - Hibernate 3.6.6.Final
+2018-12-05 17:20:14,752 INFO  [Environment]  - hibernate.properties not found
+2018-12-05 17:20:14,754 INFO  [Environment]  - Bytecode provider name : javassist
+2018-12-05 17:20:14,756 INFO  [Environment]  - using JDK 1.4 java.sql.Timestamp handling
+2018-12-05 17:20:14,835 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Person
+2018-12-05 17:20:14,847 INFO  [QueryBinder]  - Binding Named query: person.all => Select p from Person p
+2018-12-05 17:20:14,848 INFO  [QueryBinder]  - Binding Named query: person.byPin => Select p from Person p where p.pin = :pin
+2018-12-05 17:20:14,858 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Person on table Person
+2018-12-05 17:20:14,893 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Car
+2018-12-05 17:20:14,894 INFO  [QueryBinder]  - Binding Named query: car.unsold => Select c from Car c where c.sold = false
+2018-12-05 17:20:14,894 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Car on table Car
+2018-12-05 17:20:14,895 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Dog
+2018-12-05 17:20:14,896 INFO  [QueryBinder]  - Binding Named query: dog.getAll => Select d from Dog d
+2018-12-05 17:20:14,896 INFO  [QueryBinder]  - Binding Named query: dog.getByName => Select d from Dog d where d.name = :name
+2018-12-05 17:20:14,897 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Dog on table Dog
+2018-12-05 17:20:14,903 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Owner
+2018-12-05 17:20:14,904 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Owner on table Owner
+2018-12-05 17:20:14,906 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Toy
+2018-12-05 17:20:14,907 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Toy on table Toy
+2018-12-05 17:20:14,908 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Description
+2018-12-05 17:20:14,908 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Description on table Description
+2018-12-05 17:20:14,909 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Breed
+2018-12-05 17:20:14,909 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Breed on table Breed
+2018-12-05 17:20:14,917 INFO  [Configuration]  - Hibernate Validator not found: ignoring
+2018-12-05 17:20:14,919 INFO  [HibernateSearchEventListenerRegister]  - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2018-12-05 17:20:14,922 INFO  [ConnectionProviderFactory]  - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2018-12-05 17:20:15,216 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:20:15,227 INFO  [SettingsFactory]  - Database ->
+       name : HSQL Database Engine
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:20:15,227 INFO  [SettingsFactory]  - Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:20:15,228 INFO  [TransactionFactoryFactory]  - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2018-12-05 17:20:15,229 INFO  [TransactionManagerLookupFactory]  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - Automatic flush during beforeCompletion(): disabled
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - Automatic session close at end of transaction: disabled
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - JDBC batch size: 15
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - JDBC batch updates for versioned data: disabled
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - Scrollable result sets: enabled
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - JDBC3 getGeneratedKeys(): enabled
+2018-12-05 17:20:15,229 INFO  [SettingsFactory]  - Connection release mode: auto
+2018-12-05 17:20:15,230 INFO  [SettingsFactory]  - Default batch fetch size: 1
+2018-12-05 17:20:15,230 INFO  [SettingsFactory]  - Generate SQL with comments: disabled
+2018-12-05 17:20:15,230 INFO  [SettingsFactory]  - Order SQL updates by primary key: disabled
+2018-12-05 17:20:15,230 INFO  [SettingsFactory]  - Order SQL inserts for batching: disabled
+2018-12-05 17:20:15,230 INFO  [SettingsFactory]  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2018-12-05 17:20:15,231 INFO  [ASTQueryTranslatorFactory]  - Using ASTQueryTranslatorFactory
+2018-12-05 17:20:15,231 INFO  [SettingsFactory]  - Query language substitutions: {}
+2018-12-05 17:20:15,231 INFO  [SettingsFactory]  - JPA-QL strict compliance: disabled
+2018-12-05 17:20:15,231 INFO  [SettingsFactory]  - Second-level cache: enabled
+2018-12-05 17:20:15,231 INFO  [SettingsFactory]  - Query cache: disabled
+2018-12-05 17:20:15,231 INFO  [SettingsFactory]  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2018-12-05 17:20:15,232 INFO  [SettingsFactory]  - Optimize cache for minimal puts: disabled
+2018-12-05 17:20:15,232 INFO  [SettingsFactory]  - Structured second-level cache entries: disabled
+2018-12-05 17:20:15,233 INFO  [SettingsFactory]  - Echoing all SQL to stdout
+2018-12-05 17:20:15,234 INFO  [SettingsFactory]  - Statistics: disabled
+2018-12-05 17:20:15,234 INFO  [SettingsFactory]  - Deleted entity synthetic identifier rollback: disabled
+2018-12-05 17:20:15,234 INFO  [SettingsFactory]  - Default entity-mode: pojo
+2018-12-05 17:20:15,234 INFO  [SettingsFactory]  - Named query checking : enabled
+2018-12-05 17:20:15,234 INFO  [SettingsFactory]  - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2018-12-05 17:20:15,245 INFO  [SessionFactoryImpl]  - building session factory
+2018-12-05 17:20:15,248 INFO  [BasicTypeRegistry]  - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@64d43929
+2018-12-05 17:20:15,248 INFO  [BasicTypeRegistry]  - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@1d269ed7
+2018-12-05 17:20:15,248 INFO  [BasicTypeRegistry]  - Type registration [blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:20:15,249 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:20:15,249 INFO  [BasicTypeRegistry]  - Type registration [clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:20:15,249 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:20:15,249 INFO  [BasicTypeRegistry]  - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@410e94e
+2018-12-05 17:20:15,249 INFO  [BasicTypeRegistry]  - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@2d691f3d
+2018-12-05 17:20:15,249 INFO  [BasicTypeRegistry]  - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1bdbf9be
+2018-12-05 17:20:15,340 INFO  [SessionFactoryObjectFactory]  - Not binding factory to JNDI, no JNDI name configured
+2018-12-05 17:20:15,453 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:20:15,467 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED
+2018-12-05 17:20:15,467 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:20:15,468 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:15,468 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10049_10050]
+2018-12-05 17:20:15,477 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED_DOG
+2018-12-05 17:20:15,477 INFO  [TableMetadata]  - columns: [breed_id, doglist_id]
+2018-12-05 17:20:15,477 INFO  [TableMetadata]  - foreign keys: [fkcc6dbb17b85ccd7, fkcc6dbb124dcce75]
+2018-12-05 17:20:15,477 INFO  [TableMetadata]  - indexes: [sys_idx_10084, sys_idx_10086, sys_idx_sys_ct_10053_10055]
+2018-12-05 17:20:15,486 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.CAR
+2018-12-05 17:20:15,486 INFO  [TableMetadata]  - columns: [sold, model, id, make]
+2018-12-05 17:20:15,486 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:15,486 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10056_10057]
+2018-12-05 17:20:15,493 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DESCRIPTION
+2018-12-05 17:20:15,493 INFO  [TableMetadata]  - columns: [description, id]
+2018-12-05 17:20:15,493 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:15,493 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10058_10059]
+2018-12-05 17:20:15,502 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG
+2018-12-05 17:20:15,502 INFO  [TableMetadata]  - columns: [dateofbirth, description_id, sex, name, weight, id, vaccinated]
+2018-12-05 17:20:15,502 INFO  [TableMetadata]  - foreign keys: [fk10d1c1bad4935]
+2018-12-05 17:20:15,502 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10060_10061, sys_idx_10088]
+2018-12-05 17:20:15,512 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG_TOY
+2018-12-05 17:20:15,512 INFO  [TableMetadata]  - columns: [toylist_id, dog_id]
+2018-12-05 17:20:15,512 INFO  [TableMetadata]  - foreign keys: [fkd069979b9fa8ec35, fkd069979bdf24297]
+2018-12-05 17:20:15,513 INFO  [TableMetadata]  - indexes: [sys_idx_10090, sys_idx_10092]
+2018-12-05 17:20:15,519 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER
+2018-12-05 17:20:15,519 INFO  [TableMetadata]  - columns: [firstname, birthdate, id, lastname]
+2018-12-05 17:20:15,519 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:15,519 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10065_10066]
+2018-12-05 17:20:15,530 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER_DOG
+2018-12-05 17:20:15,530 INFO  [TableMetadata]  - columns: [owner_id, doglist_id]
+2018-12-05 17:20:15,530 INFO  [TableMetadata]  - foreign keys: [fk7883bd707b85ccd7, fk7883bd7083e6d215]
+2018-12-05 17:20:15,530 INFO  [TableMetadata]  - indexes: [sys_idx_10094, sys_idx_10096, sys_idx_sys_ct_10069_10071]
+2018-12-05 17:20:15,541 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON
+2018-12-05 17:20:15,541 INFO  [TableMetadata]  - columns: [firstname, pin, registrationdate, id]
+2018-12-05 17:20:15,541 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:15,541 INFO  [TableMetadata]  - indexes: [sys_idx_sys_ct_10074_10076, sys_idx_sys_pk_10073_10075]
+2018-12-05 17:20:15,548 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON_CAR
+2018-12-05 17:20:15,549 INFO  [TableMetadata]  - columns: [cars_id, person_id]
+2018-12-05 17:20:15,549 INFO  [TableMetadata]  - foreign keys: [fk9f49fbeafc3020a, fk9f49fbea2b751bbf]
+2018-12-05 17:20:15,549 INFO  [TableMetadata]  - indexes: [sys_idx_10098, sys_idx_10100, sys_idx_sys_ct_10079_10081]
+2018-12-05 17:20:15,556 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.TOY
+2018-12-05 17:20:15,556 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:20:15,556 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:15,556 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10082_10083]
+2018-12-05 17:20:15,719 INFO  [SessionFactoryImpl]  - closing
+2018-12-05 17:20:50,636 INFO  [Version]  - Hibernate Commons Annotations 3.2.0.Final
+2018-12-05 17:20:50,639 INFO  [Environment]  - Hibernate 3.6.6.Final
+2018-12-05 17:20:50,641 INFO  [Environment]  - hibernate.properties not found
+2018-12-05 17:20:50,643 INFO  [Environment]  - Bytecode provider name : javassist
+2018-12-05 17:20:50,644 INFO  [Environment]  - using JDK 1.4 java.sql.Timestamp handling
+2018-12-05 17:20:50,724 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Person
+2018-12-05 17:20:50,732 INFO  [QueryBinder]  - Binding Named query: person.all => Select p from Person p
+2018-12-05 17:20:50,733 INFO  [QueryBinder]  - Binding Named query: person.byPin => Select p from Person p where p.pin = :pin
+2018-12-05 17:20:50,740 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Person on table Person
+2018-12-05 17:20:50,768 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Car
+2018-12-05 17:20:50,769 INFO  [QueryBinder]  - Binding Named query: car.unsold => Select c from Car c where c.sold = false
+2018-12-05 17:20:50,769 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Car on table Car
+2018-12-05 17:20:50,770 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Dog
+2018-12-05 17:20:50,771 INFO  [QueryBinder]  - Binding Named query: dog.getAll => Select d from Dog d
+2018-12-05 17:20:50,771 INFO  [QueryBinder]  - Binding Named query: dog.getByName => Select d from Dog d where d.name = :name
+2018-12-05 17:20:50,772 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Dog on table Dog
+2018-12-05 17:20:50,778 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Owner
+2018-12-05 17:20:50,779 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Owner on table Owner
+2018-12-05 17:20:50,781 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Toy
+2018-12-05 17:20:50,782 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Toy on table Toy
+2018-12-05 17:20:50,783 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Description
+2018-12-05 17:20:50,783 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Description on table Description
+2018-12-05 17:20:50,784 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Breed
+2018-12-05 17:20:50,785 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Breed on table Breed
+2018-12-05 17:20:50,794 INFO  [Configuration]  - Hibernate Validator not found: ignoring
+2018-12-05 17:20:50,796 INFO  [HibernateSearchEventListenerRegister]  - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2018-12-05 17:20:50,799 INFO  [ConnectionProviderFactory]  - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2018-12-05 17:20:51,083 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:20:51,093 INFO  [SettingsFactory]  - Database ->
+       name : HSQL Database Engine
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:20:51,093 INFO  [SettingsFactory]  - Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:20:51,095 INFO  [TransactionFactoryFactory]  - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2018-12-05 17:20:51,095 INFO  [TransactionManagerLookupFactory]  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2018-12-05 17:20:51,096 INFO  [SettingsFactory]  - Automatic flush during beforeCompletion(): disabled
+2018-12-05 17:20:51,096 INFO  [SettingsFactory]  - Automatic session close at end of transaction: disabled
+2018-12-05 17:20:51,096 INFO  [SettingsFactory]  - JDBC batch size: 15
+2018-12-05 17:20:51,096 INFO  [SettingsFactory]  - JDBC batch updates for versioned data: disabled
+2018-12-05 17:20:51,097 INFO  [SettingsFactory]  - Scrollable result sets: enabled
+2018-12-05 17:20:51,097 INFO  [SettingsFactory]  - JDBC3 getGeneratedKeys(): enabled
+2018-12-05 17:20:51,097 INFO  [SettingsFactory]  - Connection release mode: auto
+2018-12-05 17:20:51,097 INFO  [SettingsFactory]  - Default batch fetch size: 1
+2018-12-05 17:20:51,097 INFO  [SettingsFactory]  - Generate SQL with comments: disabled
+2018-12-05 17:20:51,097 INFO  [SettingsFactory]  - Order SQL updates by primary key: disabled
+2018-12-05 17:20:51,098 INFO  [SettingsFactory]  - Order SQL inserts for batching: disabled
+2018-12-05 17:20:51,098 INFO  [SettingsFactory]  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2018-12-05 17:20:51,098 INFO  [ASTQueryTranslatorFactory]  - Using ASTQueryTranslatorFactory
+2018-12-05 17:20:51,099 INFO  [SettingsFactory]  - Query language substitutions: {}
+2018-12-05 17:20:51,099 INFO  [SettingsFactory]  - JPA-QL strict compliance: disabled
+2018-12-05 17:20:51,099 INFO  [SettingsFactory]  - Second-level cache: enabled
+2018-12-05 17:20:51,099 INFO  [SettingsFactory]  - Query cache: disabled
+2018-12-05 17:20:51,099 INFO  [SettingsFactory]  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2018-12-05 17:20:51,099 INFO  [SettingsFactory]  - Optimize cache for minimal puts: disabled
+2018-12-05 17:20:51,100 INFO  [SettingsFactory]  - Structured second-level cache entries: disabled
+2018-12-05 17:20:51,101 INFO  [SettingsFactory]  - Echoing all SQL to stdout
+2018-12-05 17:20:51,102 INFO  [SettingsFactory]  - Statistics: disabled
+2018-12-05 17:20:51,102 INFO  [SettingsFactory]  - Deleted entity synthetic identifier rollback: disabled
+2018-12-05 17:20:51,102 INFO  [SettingsFactory]  - Default entity-mode: pojo
+2018-12-05 17:20:51,102 INFO  [SettingsFactory]  - Named query checking : enabled
+2018-12-05 17:20:51,102 INFO  [SettingsFactory]  - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2018-12-05 17:20:51,113 INFO  [SessionFactoryImpl]  - building session factory
+2018-12-05 17:20:51,116 INFO  [BasicTypeRegistry]  - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@64d43929
+2018-12-05 17:20:51,116 INFO  [BasicTypeRegistry]  - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@1d269ed7
+2018-12-05 17:20:51,116 INFO  [BasicTypeRegistry]  - Type registration [blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:20:51,116 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:20:51,117 INFO  [BasicTypeRegistry]  - Type registration [clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:20:51,117 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:20:51,117 INFO  [BasicTypeRegistry]  - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@410e94e
+2018-12-05 17:20:51,117 INFO  [BasicTypeRegistry]  - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@2d691f3d
+2018-12-05 17:20:51,117 INFO  [BasicTypeRegistry]  - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1bdbf9be
+2018-12-05 17:20:51,211 INFO  [SessionFactoryObjectFactory]  - Not binding factory to JNDI, no JNDI name configured
+2018-12-05 17:20:51,335 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:20:51,351 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED
+2018-12-05 17:20:51,352 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:20:51,352 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:51,352 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10049_10050]
+2018-12-05 17:20:51,360 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED_DOG
+2018-12-05 17:20:51,360 INFO  [TableMetadata]  - columns: [breed_id, doglist_id]
+2018-12-05 17:20:51,360 INFO  [TableMetadata]  - foreign keys: [fkcc6dbb17b85ccd7, fkcc6dbb124dcce75]
+2018-12-05 17:20:51,360 INFO  [TableMetadata]  - indexes: [sys_idx_10084, sys_idx_10086, sys_idx_sys_ct_10053_10055]
+2018-12-05 17:20:51,368 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.CAR
+2018-12-05 17:20:51,369 INFO  [TableMetadata]  - columns: [sold, model, id, make]
+2018-12-05 17:20:51,369 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:51,369 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10056_10057]
+2018-12-05 17:20:51,376 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DESCRIPTION
+2018-12-05 17:20:51,376 INFO  [TableMetadata]  - columns: [description, id]
+2018-12-05 17:20:51,376 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:51,376 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10058_10059]
+2018-12-05 17:20:51,383 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG
+2018-12-05 17:20:51,383 INFO  [TableMetadata]  - columns: [dateofbirth, description_id, sex, name, weight, id, vaccinated]
+2018-12-05 17:20:51,383 INFO  [TableMetadata]  - foreign keys: [fk10d1c1bad4935]
+2018-12-05 17:20:51,383 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10060_10061, sys_idx_10088]
+2018-12-05 17:20:51,395 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG_TOY
+2018-12-05 17:20:51,395 INFO  [TableMetadata]  - columns: [toylist_id, dog_id]
+2018-12-05 17:20:51,395 INFO  [TableMetadata]  - foreign keys: [fkd069979b9fa8ec35, fkd069979bdf24297]
+2018-12-05 17:20:51,395 INFO  [TableMetadata]  - indexes: [sys_idx_10090, sys_idx_10092]
+2018-12-05 17:20:51,402 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER
+2018-12-05 17:20:51,402 INFO  [TableMetadata]  - columns: [firstname, birthdate, id, lastname]
+2018-12-05 17:20:51,402 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:51,402 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10065_10066]
+2018-12-05 17:20:51,410 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER_DOG
+2018-12-05 17:20:51,411 INFO  [TableMetadata]  - columns: [owner_id, doglist_id]
+2018-12-05 17:20:51,411 INFO  [TableMetadata]  - foreign keys: [fk7883bd707b85ccd7, fk7883bd7083e6d215]
+2018-12-05 17:20:51,411 INFO  [TableMetadata]  - indexes: [sys_idx_10094, sys_idx_10096, sys_idx_sys_ct_10069_10071]
+2018-12-05 17:20:51,417 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON
+2018-12-05 17:20:51,417 INFO  [TableMetadata]  - columns: [firstname, pin, registrationdate, id]
+2018-12-05 17:20:51,418 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:51,418 INFO  [TableMetadata]  - indexes: [sys_idx_sys_ct_10074_10076, sys_idx_sys_pk_10073_10075]
+2018-12-05 17:20:51,423 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON_CAR
+2018-12-05 17:20:51,424 INFO  [TableMetadata]  - columns: [cars_id, person_id]
+2018-12-05 17:20:51,424 INFO  [TableMetadata]  - foreign keys: [fk9f49fbeafc3020a, fk9f49fbea2b751bbf]
+2018-12-05 17:20:51,424 INFO  [TableMetadata]  - indexes: [sys_idx_10098, sys_idx_10100, sys_idx_sys_ct_10079_10081]
+2018-12-05 17:20:51,430 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.TOY
+2018-12-05 17:20:51,431 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:20:51,431 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:20:51,431 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10082_10083]
+2018-12-05 17:20:51,582 INFO  [SessionFactoryImpl]  - closing
+2018-12-05 17:21:14,341 INFO  [Version]  - Hibernate Commons Annotations 3.2.0.Final
+2018-12-05 17:21:14,345 INFO  [Environment]  - Hibernate 3.6.6.Final
+2018-12-05 17:21:14,347 INFO  [Environment]  - hibernate.properties not found
+2018-12-05 17:21:14,350 INFO  [Environment]  - Bytecode provider name : javassist
+2018-12-05 17:21:14,352 INFO  [Environment]  - using JDK 1.4 java.sql.Timestamp handling
+2018-12-05 17:21:14,442 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Person
+2018-12-05 17:21:14,454 INFO  [QueryBinder]  - Binding Named query: person.all => Select p from Person p
+2018-12-05 17:21:14,454 INFO  [QueryBinder]  - Binding Named query: person.byPin => Select p from Person p where p.pin = :pin
+2018-12-05 17:21:14,462 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Person on table Person
+2018-12-05 17:21:14,497 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Car
+2018-12-05 17:21:14,497 INFO  [QueryBinder]  - Binding Named query: car.unsold => Select c from Car c where c.sold = false
+2018-12-05 17:21:14,497 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Car on table Car
+2018-12-05 17:21:14,498 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Dog
+2018-12-05 17:21:14,498 INFO  [QueryBinder]  - Binding Named query: dog.getAll => Select d from Dog d
+2018-12-05 17:21:14,498 INFO  [QueryBinder]  - Binding Named query: dog.getByName => Select d from Dog d where d.name = :name
+2018-12-05 17:21:14,498 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Dog on table Dog
+2018-12-05 17:21:14,503 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Owner
+2018-12-05 17:21:14,503 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Owner on table Owner
+2018-12-05 17:21:14,504 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Toy
+2018-12-05 17:21:14,505 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Toy on table Toy
+2018-12-05 17:21:14,505 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Description
+2018-12-05 17:21:14,505 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Description on table Description
+2018-12-05 17:21:14,506 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Breed
+2018-12-05 17:21:14,506 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Breed on table Breed
+2018-12-05 17:21:14,514 INFO  [Configuration]  - Hibernate Validator not found: ignoring
+2018-12-05 17:21:14,516 INFO  [HibernateSearchEventListenerRegister]  - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2018-12-05 17:21:14,518 INFO  [ConnectionProviderFactory]  - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2018-12-05 17:21:14,799 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:21:14,809 INFO  [SettingsFactory]  - Database ->
+       name : HSQL Database Engine
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:21:14,809 INFO  [SettingsFactory]  - Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:21:14,810 INFO  [TransactionFactoryFactory]  - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2018-12-05 17:21:14,811 INFO  [TransactionManagerLookupFactory]  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - Automatic flush during beforeCompletion(): disabled
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - Automatic session close at end of transaction: disabled
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - JDBC batch size: 15
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - JDBC batch updates for versioned data: disabled
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - Scrollable result sets: enabled
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - JDBC3 getGeneratedKeys(): enabled
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - Connection release mode: auto
+2018-12-05 17:21:14,811 INFO  [SettingsFactory]  - Default batch fetch size: 1
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - Generate SQL with comments: disabled
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - Order SQL updates by primary key: disabled
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - Order SQL inserts for batching: disabled
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2018-12-05 17:21:14,812 INFO  [ASTQueryTranslatorFactory]  - Using ASTQueryTranslatorFactory
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - Query language substitutions: {}
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - JPA-QL strict compliance: disabled
+2018-12-05 17:21:14,812 INFO  [SettingsFactory]  - Second-level cache: enabled
+2018-12-05 17:21:14,813 INFO  [SettingsFactory]  - Query cache: disabled
+2018-12-05 17:21:14,813 INFO  [SettingsFactory]  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2018-12-05 17:21:14,813 INFO  [SettingsFactory]  - Optimize cache for minimal puts: disabled
+2018-12-05 17:21:14,813 INFO  [SettingsFactory]  - Structured second-level cache entries: disabled
+2018-12-05 17:21:14,814 INFO  [SettingsFactory]  - Echoing all SQL to stdout
+2018-12-05 17:21:14,815 INFO  [SettingsFactory]  - Statistics: disabled
+2018-12-05 17:21:14,815 INFO  [SettingsFactory]  - Deleted entity synthetic identifier rollback: disabled
+2018-12-05 17:21:14,815 INFO  [SettingsFactory]  - Default entity-mode: pojo
+2018-12-05 17:21:14,815 INFO  [SettingsFactory]  - Named query checking : enabled
+2018-12-05 17:21:14,815 INFO  [SettingsFactory]  - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2018-12-05 17:21:14,824 INFO  [SessionFactoryImpl]  - building session factory
+2018-12-05 17:21:14,827 INFO  [BasicTypeRegistry]  - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@64d43929
+2018-12-05 17:21:14,827 INFO  [BasicTypeRegistry]  - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@1d269ed7
+2018-12-05 17:21:14,827 INFO  [BasicTypeRegistry]  - Type registration [blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:21:14,827 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:21:14,827 INFO  [BasicTypeRegistry]  - Type registration [clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:21:14,828 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:21:14,828 INFO  [BasicTypeRegistry]  - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@410e94e
+2018-12-05 17:21:14,828 INFO  [BasicTypeRegistry]  - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@2d691f3d
+2018-12-05 17:21:14,828 INFO  [BasicTypeRegistry]  - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1bdbf9be
+2018-12-05 17:21:14,923 INFO  [SessionFactoryObjectFactory]  - Not binding factory to JNDI, no JNDI name configured
+2018-12-05 17:21:15,051 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:21:15,066 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED
+2018-12-05 17:21:15,066 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:21:15,066 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:21:15,066 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10049_10050]
+2018-12-05 17:21:15,075 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED_DOG
+2018-12-05 17:21:15,075 INFO  [TableMetadata]  - columns: [breed_id, doglist_id]
+2018-12-05 17:21:15,075 INFO  [TableMetadata]  - foreign keys: [fkcc6dbb17b85ccd7, fkcc6dbb124dcce75]
+2018-12-05 17:21:15,075 INFO  [TableMetadata]  - indexes: [sys_idx_10084, sys_idx_10086, sys_idx_sys_ct_10053_10055]
+2018-12-05 17:21:15,083 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.CAR
+2018-12-05 17:21:15,084 INFO  [TableMetadata]  - columns: [sold, model, id, make]
+2018-12-05 17:21:15,084 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:21:15,084 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10056_10057]
+2018-12-05 17:21:15,093 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DESCRIPTION
+2018-12-05 17:21:15,093 INFO  [TableMetadata]  - columns: [description, id]
+2018-12-05 17:21:15,093 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:21:15,094 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10058_10059]
+2018-12-05 17:21:15,102 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG
+2018-12-05 17:21:15,102 INFO  [TableMetadata]  - columns: [dateofbirth, description_id, sex, name, weight, id, vaccinated]
+2018-12-05 17:21:15,102 INFO  [TableMetadata]  - foreign keys: [fk10d1c1bad4935]
+2018-12-05 17:21:15,103 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10060_10061, sys_idx_10088]
+2018-12-05 17:21:15,112 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG_TOY
+2018-12-05 17:21:15,112 INFO  [TableMetadata]  - columns: [toylist_id, dog_id]
+2018-12-05 17:21:15,112 INFO  [TableMetadata]  - foreign keys: [fkd069979b9fa8ec35, fkd069979bdf24297]
+2018-12-05 17:21:15,112 INFO  [TableMetadata]  - indexes: [sys_idx_10090, sys_idx_10092]
+2018-12-05 17:21:15,118 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER
+2018-12-05 17:21:15,118 INFO  [TableMetadata]  - columns: [firstname, birthdate, id, lastname]
+2018-12-05 17:21:15,118 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:21:15,118 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10065_10066]
+2018-12-05 17:21:15,124 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER_DOG
+2018-12-05 17:21:15,124 INFO  [TableMetadata]  - columns: [owner_id, doglist_id]
+2018-12-05 17:21:15,124 INFO  [TableMetadata]  - foreign keys: [fk7883bd707b85ccd7, fk7883bd7083e6d215]
+2018-12-05 17:21:15,124 INFO  [TableMetadata]  - indexes: [sys_idx_10094, sys_idx_10096, sys_idx_sys_ct_10069_10071]
+2018-12-05 17:21:15,130 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON
+2018-12-05 17:21:15,130 INFO  [TableMetadata]  - columns: [firstname, pin, registrationdate, id]
+2018-12-05 17:21:15,130 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:21:15,131 INFO  [TableMetadata]  - indexes: [sys_idx_sys_ct_10074_10076, sys_idx_sys_pk_10073_10075]
+2018-12-05 17:21:15,136 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON_CAR
+2018-12-05 17:21:15,137 INFO  [TableMetadata]  - columns: [cars_id, person_id]
+2018-12-05 17:21:15,137 INFO  [TableMetadata]  - foreign keys: [fk9f49fbeafc3020a, fk9f49fbea2b751bbf]
+2018-12-05 17:21:15,137 INFO  [TableMetadata]  - indexes: [sys_idx_10098, sys_idx_10100, sys_idx_sys_ct_10079_10081]
+2018-12-05 17:21:15,142 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.TOY
+2018-12-05 17:21:15,142 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:21:15,142 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:21:15,142 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10082_10083]
+2018-12-05 17:21:15,295 INFO  [SessionFactoryImpl]  - closing
+2018-12-05 17:21:51,546 INFO  [Version]  - Hibernate Commons Annotations 3.2.0.Final
+2018-12-05 17:21:51,550 INFO  [Environment]  - Hibernate 3.6.6.Final
+2018-12-05 17:21:51,551 INFO  [Environment]  - hibernate.properties not found
+2018-12-05 17:21:51,553 INFO  [Environment]  - Bytecode provider name : javassist
+2018-12-05 17:21:51,555 INFO  [Environment]  - using JDK 1.4 java.sql.Timestamp handling
+2018-12-05 17:21:51,640 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Person
+2018-12-05 17:21:51,652 INFO  [QueryBinder]  - Binding Named query: person.all => Select p from Person p
+2018-12-05 17:21:51,653 INFO  [QueryBinder]  - Binding Named query: person.byPin => Select p from Person p where p.pin = :pin
+2018-12-05 17:21:51,661 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Person on table Person
+2018-12-05 17:21:51,696 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Car
+2018-12-05 17:21:51,696 INFO  [QueryBinder]  - Binding Named query: car.unsold => Select c from Car c where c.sold = false
+2018-12-05 17:21:51,697 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Car on table Car
+2018-12-05 17:21:51,698 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Dog
+2018-12-05 17:21:51,698 INFO  [QueryBinder]  - Binding Named query: dog.getAll => Select d from Dog d
+2018-12-05 17:21:51,698 INFO  [QueryBinder]  - Binding Named query: dog.getByName => Select d from Dog d where d.name = :name
+2018-12-05 17:21:51,698 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Dog on table Dog
+2018-12-05 17:21:51,703 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Owner
+2018-12-05 17:21:51,703 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Owner on table Owner
+2018-12-05 17:21:51,705 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Toy
+2018-12-05 17:21:51,705 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Toy on table Toy
+2018-12-05 17:21:51,706 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Description
+2018-12-05 17:21:51,706 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Description on table Description
+2018-12-05 17:21:51,706 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Breed
+2018-12-05 17:21:51,707 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Breed on table Breed
+2018-12-05 17:21:51,714 INFO  [Configuration]  - Hibernate Validator not found: ignoring
+2018-12-05 17:21:51,716 INFO  [HibernateSearchEventListenerRegister]  - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2018-12-05 17:21:51,718 INFO  [ConnectionProviderFactory]  - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2018-12-05 17:21:52,007 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:21:52,018 INFO  [SettingsFactory]  - Database ->
+       name : HSQL Database Engine
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:21:52,018 INFO  [SettingsFactory]  - Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:21:52,019 INFO  [TransactionFactoryFactory]  - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2018-12-05 17:21:52,019 INFO  [TransactionManagerLookupFactory]  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2018-12-05 17:21:52,020 INFO  [SettingsFactory]  - Automatic flush during beforeCompletion(): disabled
+2018-12-05 17:21:52,020 INFO  [SettingsFactory]  - Automatic session close at end of transaction: disabled
+2018-12-05 17:21:52,020 INFO  [SettingsFactory]  - JDBC batch size: 15
+2018-12-05 17:21:52,020 INFO  [SettingsFactory]  - JDBC batch updates for versioned data: disabled
+2018-12-05 17:21:52,020 INFO  [SettingsFactory]  - Scrollable result sets: enabled
+2018-12-05 17:21:52,020 INFO  [SettingsFactory]  - JDBC3 getGeneratedKeys(): enabled
+2018-12-05 17:21:52,021 INFO  [SettingsFactory]  - Connection release mode: auto
+2018-12-05 17:21:52,021 INFO  [SettingsFactory]  - Default batch fetch size: 1
+2018-12-05 17:21:52,021 INFO  [SettingsFactory]  - Generate SQL with comments: disabled
+2018-12-05 17:21:52,021 INFO  [SettingsFactory]  - Order SQL updates by primary key: disabled
+2018-12-05 17:21:52,021 INFO  [SettingsFactory]  - Order SQL inserts for batching: disabled
+2018-12-05 17:21:52,021 INFO  [SettingsFactory]  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2018-12-05 17:21:52,022 INFO  [ASTQueryTranslatorFactory]  - Using ASTQueryTranslatorFactory
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - Query language substitutions: {}
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - JPA-QL strict compliance: disabled
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - Second-level cache: enabled
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - Query cache: disabled
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - Optimize cache for minimal puts: disabled
+2018-12-05 17:21:52,022 INFO  [SettingsFactory]  - Structured second-level cache entries: disabled
+2018-12-05 17:21:52,024 INFO  [SettingsFactory]  - Echoing all SQL to stdout
+2018-12-05 17:21:52,024 INFO  [SettingsFactory]  - Statistics: disabled
+2018-12-05 17:21:52,024 INFO  [SettingsFactory]  - Deleted entity synthetic identifier rollback: disabled
+2018-12-05 17:21:52,024 INFO  [SettingsFactory]  - Default entity-mode: pojo
+2018-12-05 17:21:52,024 INFO  [SettingsFactory]  - Named query checking : enabled
+2018-12-05 17:21:52,024 INFO  [SettingsFactory]  - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2018-12-05 17:21:52,031 INFO  [SessionFactoryImpl]  - building session factory
+2018-12-05 17:21:52,033 INFO  [BasicTypeRegistry]  - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@64d43929
+2018-12-05 17:21:52,033 INFO  [BasicTypeRegistry]  - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@1d269ed7
+2018-12-05 17:21:52,033 INFO  [BasicTypeRegistry]  - Type registration [blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:21:52,033 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:21:52,034 INFO  [BasicTypeRegistry]  - Type registration [clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:21:52,034 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:21:52,034 INFO  [BasicTypeRegistry]  - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@410e94e
+2018-12-05 17:21:52,034 INFO  [BasicTypeRegistry]  - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@2d691f3d
+2018-12-05 17:21:52,034 INFO  [BasicTypeRegistry]  - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1bdbf9be
+2018-12-05 17:21:52,124 INFO  [SessionFactoryObjectFactory]  - Not binding factory to JNDI, no JNDI name configured
+2018-12-05 17:21:52,240 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:21:52,256 INFO  [DatabaseMetadata]  - table not found: Breed
+2018-12-05 17:21:52,261 INFO  [DatabaseMetadata]  - table not found: Breed_Dog
+2018-12-05 17:21:52,264 INFO  [DatabaseMetadata]  - table not found: Car
+2018-12-05 17:21:52,267 INFO  [DatabaseMetadata]  - table not found: Description
+2018-12-05 17:21:52,270 INFO  [DatabaseMetadata]  - table not found: Dog
+2018-12-05 17:21:52,272 INFO  [DatabaseMetadata]  - table not found: Dog_Toy
+2018-12-05 17:21:52,275 INFO  [DatabaseMetadata]  - table not found: Owner
+2018-12-05 17:21:52,277 INFO  [DatabaseMetadata]  - table not found: Owner_Dog
+2018-12-05 17:21:52,278 INFO  [DatabaseMetadata]  - table not found: Person
+2018-12-05 17:21:52,280 INFO  [DatabaseMetadata]  - table not found: Person_Car
+2018-12-05 17:21:52,281 INFO  [DatabaseMetadata]  - table not found: Toy
+2018-12-05 17:21:52,283 INFO  [DatabaseMetadata]  - table not found: Breed
+2018-12-05 17:21:52,285 INFO  [DatabaseMetadata]  - table not found: Breed_Dog
+2018-12-05 17:21:52,287 INFO  [DatabaseMetadata]  - table not found: Car
+2018-12-05 17:21:52,289 INFO  [DatabaseMetadata]  - table not found: Description
+2018-12-05 17:21:52,291 INFO  [DatabaseMetadata]  - table not found: Dog
+2018-12-05 17:21:52,292 INFO  [DatabaseMetadata]  - table not found: Dog_Toy
+2018-12-05 17:21:52,294 INFO  [DatabaseMetadata]  - table not found: Owner
+2018-12-05 17:21:52,295 INFO  [DatabaseMetadata]  - table not found: Owner_Dog
+2018-12-05 17:21:52,296 INFO  [DatabaseMetadata]  - table not found: Person
+2018-12-05 17:21:52,298 INFO  [DatabaseMetadata]  - table not found: Person_Car
+2018-12-05 17:21:52,300 INFO  [DatabaseMetadata]  - table not found: Toy
+2018-12-05 17:21:52,470 INFO  [SessionFactoryImpl]  - closing
+2018-12-05 17:23:57,384 INFO  [Version]  - Hibernate Commons Annotations 3.2.0.Final
+2018-12-05 17:23:57,387 INFO  [Environment]  - Hibernate 3.6.6.Final
+2018-12-05 17:23:57,389 INFO  [Environment]  - hibernate.properties not found
+2018-12-05 17:23:57,391 INFO  [Environment]  - Bytecode provider name : javassist
+2018-12-05 17:23:57,393 INFO  [Environment]  - using JDK 1.4 java.sql.Timestamp handling
+2018-12-05 17:23:57,481 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Person
+2018-12-05 17:23:57,492 INFO  [QueryBinder]  - Binding Named query: person.all => Select p from Person p
+2018-12-05 17:23:57,492 INFO  [QueryBinder]  - Binding Named query: person.byPin => Select p from Person p where p.pin = :pin
+2018-12-05 17:23:57,501 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Person on table Person
+2018-12-05 17:23:57,532 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Car
+2018-12-05 17:23:57,533 INFO  [QueryBinder]  - Binding Named query: car.unsold => Select c from Car c where c.sold = false
+2018-12-05 17:23:57,533 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Car on table Car
+2018-12-05 17:23:57,535 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Dog
+2018-12-05 17:23:57,535 INFO  [QueryBinder]  - Binding Named query: dog.getAll => Select d from Dog d
+2018-12-05 17:23:57,536 INFO  [QueryBinder]  - Binding Named query: dog.getByName => Select d from Dog d where d.name = :name
+2018-12-05 17:23:57,536 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Dog on table Dog
+2018-12-05 17:23:57,543 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Owner
+2018-12-05 17:23:57,543 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Owner on table Owner
+2018-12-05 17:23:57,546 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Toy
+2018-12-05 17:23:57,546 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Toy on table Toy
+2018-12-05 17:23:57,547 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Description
+2018-12-05 17:23:57,548 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Description on table Description
+2018-12-05 17:23:57,548 INFO  [AnnotationBinder]  - Binding entity from annotated class: com.example.shdemo.domain.Breed
+2018-12-05 17:23:57,549 INFO  [EntityBinder]  - Bind entity com.example.shdemo.domain.Breed on table Breed
+2018-12-05 17:23:57,558 INFO  [Configuration]  - Hibernate Validator not found: ignoring
+2018-12-05 17:23:57,559 INFO  [HibernateSearchEventListenerRegister]  - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2018-12-05 17:23:57,562 INFO  [ConnectionProviderFactory]  - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2018-12-05 17:23:57,838 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:23:57,849 INFO  [SettingsFactory]  - Database ->
+       name : HSQL Database Engine
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:23:57,849 INFO  [SettingsFactory]  - Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.2.4
+      major : 2
+      minor : 2
+2018-12-05 17:23:57,850 INFO  [TransactionFactoryFactory]  - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2018-12-05 17:23:57,851 INFO  [TransactionManagerLookupFactory]  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2018-12-05 17:23:57,851 INFO  [SettingsFactory]  - Automatic flush during beforeCompletion(): disabled
+2018-12-05 17:23:57,851 INFO  [SettingsFactory]  - Automatic session close at end of transaction: disabled
+2018-12-05 17:23:57,851 INFO  [SettingsFactory]  - JDBC batch size: 15
+2018-12-05 17:23:57,851 INFO  [SettingsFactory]  - JDBC batch updates for versioned data: disabled
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Scrollable result sets: enabled
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - JDBC3 getGeneratedKeys(): enabled
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Connection release mode: auto
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Default batch fetch size: 1
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Generate SQL with comments: disabled
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Order SQL updates by primary key: disabled
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Order SQL inserts for batching: disabled
+2018-12-05 17:23:57,852 INFO  [SettingsFactory]  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2018-12-05 17:23:57,853 INFO  [ASTQueryTranslatorFactory]  - Using ASTQueryTranslatorFactory
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - Query language substitutions: {}
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - JPA-QL strict compliance: disabled
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - Second-level cache: enabled
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - Query cache: disabled
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - Optimize cache for minimal puts: disabled
+2018-12-05 17:23:57,853 INFO  [SettingsFactory]  - Structured second-level cache entries: disabled
+2018-12-05 17:23:57,855 INFO  [SettingsFactory]  - Echoing all SQL to stdout
+2018-12-05 17:23:57,855 INFO  [SettingsFactory]  - Statistics: disabled
+2018-12-05 17:23:57,855 INFO  [SettingsFactory]  - Deleted entity synthetic identifier rollback: disabled
+2018-12-05 17:23:57,855 INFO  [SettingsFactory]  - Default entity-mode: pojo
+2018-12-05 17:23:57,855 INFO  [SettingsFactory]  - Named query checking : enabled
+2018-12-05 17:23:57,855 INFO  [SettingsFactory]  - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2018-12-05 17:23:57,864 INFO  [SessionFactoryImpl]  - building session factory
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@64d43929
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@1d269ed7
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@437ebf59
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@41c89d2f
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@410e94e
+2018-12-05 17:23:57,868 INFO  [BasicTypeRegistry]  - Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@2d691f3d
+2018-12-05 17:23:57,869 INFO  [BasicTypeRegistry]  - Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@1bdbf9be
+2018-12-05 17:23:57,967 INFO  [SessionFactoryObjectFactory]  - Not binding factory to JNDI, no JNDI name configured
+2018-12-05 17:23:58,091 INFO  [Dialect]  - Using dialect: org.hibernate.dialect.HSQLDialect
+2018-12-05 17:23:58,108 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED
+2018-12-05 17:23:58,108 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:23:58,109 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:23:58,109 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10049_10050]
+2018-12-05 17:23:58,118 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.BREED_DOG
+2018-12-05 17:23:58,118 INFO  [TableMetadata]  - columns: [breed_id, doglist_id]
+2018-12-05 17:23:58,118 INFO  [TableMetadata]  - foreign keys: [fkcc6dbb17b85ccd7, fkcc6dbb124dcce75]
+2018-12-05 17:23:58,118 INFO  [TableMetadata]  - indexes: [sys_idx_10087, sys_idx_10089, sys_idx_sys_ct_10053_10055]
+2018-12-05 17:23:58,126 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.CAR
+2018-12-05 17:23:58,126 INFO  [TableMetadata]  - columns: [sold, model, id, make]
+2018-12-05 17:23:58,126 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:23:58,126 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10056_10057]
+2018-12-05 17:23:58,134 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DESCRIPTION
+2018-12-05 17:23:58,135 INFO  [TableMetadata]  - columns: [description, id]
+2018-12-05 17:23:58,135 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:23:58,135 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10058_10059]
+2018-12-05 17:23:58,142 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG
+2018-12-05 17:23:58,142 INFO  [TableMetadata]  - columns: [dateofbirth, description_id, sex, name, weight, id, vaccinated]
+2018-12-05 17:23:58,142 INFO  [TableMetadata]  - foreign keys: [fk10d1c1bad4935]
+2018-12-05 17:23:58,142 INFO  [TableMetadata]  - indexes: [sys_idx_sys_ct_10062_10064, sys_idx_sys_pk_10061_10063, sys_idx_10091]
+2018-12-05 17:23:58,151 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.DOG_TOY
+2018-12-05 17:23:58,151 INFO  [TableMetadata]  - columns: [toylist_id, dog_id]
+2018-12-05 17:23:58,151 INFO  [TableMetadata]  - foreign keys: [fkd069979b9fa8ec35, fkd069979bdf24297]
+2018-12-05 17:23:58,151 INFO  [TableMetadata]  - indexes: [sys_idx_10095, sys_idx_10093]
+2018-12-05 17:23:58,158 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER
+2018-12-05 17:23:58,159 INFO  [TableMetadata]  - columns: [firstname, birthdate, id, lastname]
+2018-12-05 17:23:58,159 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:23:58,159 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10068_10069]
+2018-12-05 17:23:58,167 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.OWNER_DOG
+2018-12-05 17:23:58,167 INFO  [TableMetadata]  - columns: [owner_id, doglist_id]
+2018-12-05 17:23:58,167 INFO  [TableMetadata]  - foreign keys: [fk7883bd707b85ccd7, fk7883bd7083e6d215]
+2018-12-05 17:23:58,167 INFO  [TableMetadata]  - indexes: [sys_idx_sys_ct_10072_10074, sys_idx_10097, sys_idx_10099]
+2018-12-05 17:23:58,178 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON
+2018-12-05 17:23:58,178 INFO  [TableMetadata]  - columns: [firstname, pin, registrationdate, id]
+2018-12-05 17:23:58,178 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:23:58,178 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10076_10078, sys_idx_sys_ct_10077_10079]
+2018-12-05 17:23:58,186 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.PERSON_CAR
+2018-12-05 17:23:58,187 INFO  [TableMetadata]  - columns: [cars_id, person_id]
+2018-12-05 17:23:58,187 INFO  [TableMetadata]  - foreign keys: [fk9f49fbeafc3020a, fk9f49fbea2b751bbf]
+2018-12-05 17:23:58,187 INFO  [TableMetadata]  - indexes: [sys_idx_sys_ct_10082_10084, sys_idx_10101, sys_idx_10103]
+2018-12-05 17:23:58,195 INFO  [TableMetadata]  - table found: PUBLIC.PUBLIC.TOY
+2018-12-05 17:23:58,195 INFO  [TableMetadata]  - columns: [name, description, id]
+2018-12-05 17:23:58,195 INFO  [TableMetadata]  - foreign keys: []
+2018-12-05 17:23:58,195 INFO  [TableMetadata]  - indexes: [sys_idx_sys_pk_10085_10086]
+2018-12-05 17:23:58,368 INFO  [SessionFactoryImpl]  - closing
