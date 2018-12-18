@@ -3,6 +3,7 @@ package com.example.shdemo.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.example.shdemo.domain.Dog;
 import com.example.shdemo.domain.Owner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,8 +24,8 @@ import java.util.List;
 @Transactional
 public class OwnerServiceTest {
 
-//    @Autowired
-//    DogService dogService;
+    @Autowired
+    DogService dogService;
     @Autowired
     OwnerService ownerService;
 
@@ -91,8 +92,43 @@ public class OwnerServiceTest {
 
     @Test
     public void deleteOwnerTest(){
-        
+        List<Dog> dogList = dogService.getAllDogs();
+
+        for (Dog dog: dogList){
+            if(dog.getName().equals(DOG1_NAME)){
+                dogService.deleteDog(dog);
+            }
+        }
+
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG1_NAME);
+        dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
+        dogToAdd.setWeight(DOG1_WEIGHT);
+        dogToAdd.setSex(DOG1_SEX);
+
+
+        List<Owner> owners = ownerService.getAllOwners();
+
+        for(Owner owner : owners){
+            if(owner.getFirstName().equals(OWNER_FNAME))
+                ownerService.deleteOwner(owner);
+        }
+
+        Owner ownerToAdd = new Owner();
+        ownerToAdd.setFirstName(OWNER_FNAME);
+        ownerToAdd.setLastName(OWNER_LNAME);
+        ownerToAdd.setBirthDate(OWNER_BDATE);
+        ownerToAdd.getDogList().add(dogToAdd);
+
+        dogService.addDog(dogToAdd);
+        ownerService.addOwner(ownerToAdd);
+
+        ownerService.deleteOwner(ownerToAdd);
+
+        assertEquals(ownerService.getAllOwners().size(),0);
+        assertEquals(dogService.getAllDogs().size(),0);
     }
+
 
 
 }
