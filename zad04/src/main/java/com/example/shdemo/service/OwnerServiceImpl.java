@@ -26,8 +26,8 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public void addDogToOwner(Long ownerId, Long dogId) {
-        Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class,ownerId);
-        Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dogId);
+        Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, ownerId);
+        Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, dogId);
         owner.getDogList().add(dog);
     }
 
@@ -44,7 +44,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner getOwnerById(Long id) {
-        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getById").setLong("id",id).uniqueResult();
+        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getById").setLong("id", id).uniqueResult();
     }
 
     @Override
@@ -54,14 +54,14 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public void deleteOwner(Owner owner) {
-        owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class,owner.getId());
-        for(Dog dog: owner.getDogList()){
-            dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dog.getId());
+        owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, owner.getId());
+        for (Dog dog : owner.getDogList()) {
+            dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, dog.getId());
             sessionFactory.getCurrentSession().delete(dog);
         }
 
         sessionFactory.getCurrentSession().delete(owner);
 
 
-
     }
+}

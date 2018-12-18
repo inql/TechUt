@@ -61,6 +61,77 @@ public class DogServiceTest {
         assertEquals(DOG1_SEX,addedDog.getSex());
     }
 
+    @Test
+    public void updateDogTest(){
+
+        List<Dog> dogList = dogService.getAllDogs();
+
+        for (Dog dog: dogList){
+            if(dog.getName().equals(DOG2_NAME)){
+                dogService.deleteDog(dog);
+            }
+        }
+
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG2_NAME);
+        dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
+        dogToAdd.setWeight(DOG2_WEIGHT);
+        dogToAdd.setSex(DOG2_SEX);
+
+        dogService.addDog(dogToAdd);
+
+        dogToAdd.setVaccinated(true);
+        dogService.updateDog(dogToAdd);
+
+        Dog updatedDog = dogService.getDogByName(DOG2_NAME);
+
+        assertEquals(DOG2_NAME,updatedDog.getName());
+        assertEquals(true,updatedDog.getVaccinated());
+        assertEquals(DOG2_WEIGHT,updatedDog.getWeight());
+        assertEquals(DOG2_SEX,updatedDog.getSex());
+
+    }
+
+    @Test
+    public void deleteDogTest(){
+
+        List<Dog> dogList = dogService.getAllDogs();
+
+        for (Dog dog: dogList){
+            if(dog.getName().equals(DOG2_NAME) || dog.getName().equals(DOG1_NAME)){
+                dogService.deleteDog(dog);
+            }
+        }
+
+        Dog dogToDelete = new Dog();
+        dogToDelete.setName(DOG1_NAME);
+        dogToDelete.setVaccinated(DOG1_IS_VACCINATED);
+        dogToDelete.setWeight(DOG1_WEIGHT);
+        dogToDelete.setSex(DOG1_SEX);
+
+        dogService.addDog(dogToDelete);
+
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG2_NAME);
+        dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
+        dogToAdd.setWeight(DOG2_WEIGHT);
+        dogToAdd.setSex(DOG2_SEX);
+
+        dogService.addDog(dogToAdd);
+
+        dogService.deleteDog(dogToDelete);
+
+        List<Dog> dogs = dogService.getAllDogs();
+        Dog remainedDog = dogs.get(0);
+
+        assertEquals(dogs.size(),1);
+        assertEquals(DOG2_NAME,remainedDog.getName());
+        assertEquals(DOG2_IS_VACCINATED,remainedDog.getVaccinated());
+        assertEquals(DOG2_WEIGHT,remainedDog.getWeight());
+        assertEquals(DOG2_SEX,remainedDog.getSex());
+
+    }
+
 
 
 

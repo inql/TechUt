@@ -52,7 +52,4 @@ public class DogServiceImpl implements DogService {
         sessionFactory.getCurrentSession().delete(dog);
 
     }
-
-
-    }
 }
