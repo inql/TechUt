@@ -65,7 +65,14 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public void deleteOwner() {
+    public void deleteOwner(Owner owner) {
+        owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class,owner.getId());
+        for(Dog dog: owner.getDogList()){
+            deleteDog(dog);
+        }
+
+        sessionFactory.getCurrentSession().delete(owner);
+
 
     }
 }

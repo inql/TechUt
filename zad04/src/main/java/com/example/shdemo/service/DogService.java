@@ -15,7 +15,7 @@ public interface DogService {
     Long addOwner(Owner owner);
     List getAllOwners();
     Owner getOwnerById(Long id);
-    void deleteOwner();
+    void deleteOwner(Owner owner);
 
 
 
