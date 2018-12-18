@@ -1,9 +1,6 @@
 package com.example.shdemo.service;
 
 import static org.junit.Assert.assertEquals;
-
-import com.example.shdemo.domain.Dog;
-
 import com.example.shdemo.domain.Owner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,16 +10,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
 @TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
 @Transactional
-public class DogServiceTest {
+public class OwnerServiceTest {
 
     @Autowired
     DogService dogService;
+    @Autowired
+    OwnerService ownerService;
 
     private final String DOG1_NAME = "Burek";
     private final Boolean DOG1_IS_VACCINATED = true;
@@ -34,34 +36,15 @@ public class DogServiceTest {
     private final Double DOG2_WEIGHT = 4.9;
     private final Character DOG2_SEX = 'c';
 
+    private final String OWNER_FNAME = "Jan";
+    private final String OWNER_LNAME = "Abacki";
+    private final Date OWNER_BDATE = new GregorianCalendar(100,10,10).getTime();
+
     @Test
-    public void addDogTest(){
+    public void addOwnerTest(){
+        assertEquals(true,true);
 
-        List<Dog> dogList = dogService.getAllDogs();
-
-        for (Dog dog: dogList){
-            if(dog.getName().equals(DOG1_NAME)){
-                dogService.deleteDog(dog);
-            }
-        }
-
-        Dog dogToAdd = new Dog();
-        dogToAdd.setName(DOG1_NAME);
-        dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
-        dogToAdd.setWeight(DOG1_WEIGHT);
-        dogToAdd.setSex(DOG1_SEX);
-
-        dogService.addDog(dogToAdd);
-
-        Dog addedDog = dogService.getDogByName(DOG1_NAME);
-
-        assertEquals(DOG1_NAME,addedDog.getName());
-        assertEquals(DOG1_IS_VACCINATED,addedDog.getVaccinated());
-        assertEquals(DOG1_WEIGHT,addedDog.getWeight());
-        assertEquals(DOG1_SEX,addedDog.getSex());
     }
-
-
 
 
 }

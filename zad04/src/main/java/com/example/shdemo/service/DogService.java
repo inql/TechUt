@@ -13,13 +13,6 @@ public interface DogService {
     void updateDog(Dog dog);
     void deleteDog(Dog dog);
 
-    void addDogToOwner(Long ownerId, Long dogId);
-
-    Long addOwner(Owner owner);
-    List getAllOwners();
-    Owner getOwnerById(Long id);
-    void updateOwner(Owner owner);
-    void deleteOwner(Owner owner);
 
 
 

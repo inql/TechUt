@@ -53,43 +53,6 @@ public class DogServiceImpl implements DogService {
 
     }
 
-    @Override
-    public void addDogToOwner(Long ownerId, Long dogId) {
-        Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class,ownerId);
-        Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dogId);
-        owner.getDogList().add(dog);
-    }
-
-    @Override
-    public Long addOwner(Owner owner) {
-        owner.setId(null);
-        return (Long) sessionFactory.getCurrentSession().save(owner);
-    }
-
-    @Override
-    public List getAllOwners() {
-        return sessionFactory.getCurrentSession().getNamedQuery("owner.getAll").list();
-    }
-
-    @Override
-    public Owner getOwnerById(Long id) {
-        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getById").setLong("id",id).uniqueResult();
-    }
-
-    @Override
-    public void updateOwner(Owner owner) {
-        sessionFactory.getCurrentSession().update(owner);
-    }
-
-    @Override
-    public void deleteOwner(Owner owner) {
-        owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class,owner.getId());
-        for(Dog dog: owner.getDogList()){
-            deleteDog(dog);
-        }
-
-        sessionFactory.getCurrentSession().delete(owner);
-
 
     }
 }
