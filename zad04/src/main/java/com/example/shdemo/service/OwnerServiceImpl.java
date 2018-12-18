@@ -49,7 +49,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner getOwnerByName(String name) {
-        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getByName").setString("name",name).uniqueResult();
+        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getByName").setString("firstName",name).uniqueResult();
     }
 
     @Override

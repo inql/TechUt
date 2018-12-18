@@ -9,7 +9,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "owner.getAll",query = "Select o from Owner o"),
         @NamedQuery(name = "owner.getById",query = "Select o from Owner o where :id=o.id"),
-        @NamedQuery(name = "owner.getByName",query = "Select o from Owner o where :name=o.name")
+        @NamedQuery(name = "owner.getByName",query = "Select o from Owner o where :firstName=o.firstName")
 })
 public class Owner {
 

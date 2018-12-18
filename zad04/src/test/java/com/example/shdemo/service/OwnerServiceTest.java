@@ -1,6 +1,8 @@
 package com.example.shdemo.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import com.example.shdemo.domain.Owner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,8 +23,8 @@ import java.util.List;
 @Transactional
 public class OwnerServiceTest {
 
-    @Autowired
-    DogService dogService;
+//    @Autowired
+//    DogService dogService;
     @Autowired
     OwnerService ownerService;
 
@@ -61,6 +63,35 @@ public class OwnerServiceTest {
         assertEquals(OWNER_FNAME,addedOwner.getFirstName());
         assertEquals(OWNER_LNAME,addedOwner.getLastName());
         assertEquals(OWNER_BDATE,addedOwner.getBirthDate());
+    }
+
+    @Test
+    public void updateOwnerTest(){
+        List<Owner> owners = ownerService.getAllOwners();
+
+        for(Owner owner : owners){
+            if(owner.getFirstName().equals(OWNER_FNAME))
+                ownerService.deleteOwner(owner);
+        }
+
+        Owner ownerToAdd = new Owner();
+        ownerToAdd.setFirstName(OWNER_FNAME);
+        ownerToAdd.setLastName(OWNER_LNAME);
+        ownerToAdd.setBirthDate(OWNER_BDATE);
+
+        ownerService.addOwner(ownerToAdd);
+
+        ownerToAdd.setLastName("Babacki");
+        Owner addedOwner = ownerService.getOwnerByName(OWNER_FNAME);
+
+        assertEquals(OWNER_FNAME,addedOwner.getFirstName());
+        assertEquals("Babacki",addedOwner.getLastName());
+        assertEquals(OWNER_BDATE,addedOwner.getBirthDate());
+    }
+
+    @Test
+    public void deleteOwnerTest(){
+        
     }
 
 
