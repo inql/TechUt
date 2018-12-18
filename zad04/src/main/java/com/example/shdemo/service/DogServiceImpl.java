@@ -61,7 +61,7 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public Owner getOwnerById(Long id) {
-        return null;
+        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getById").setLong("id",id).uniqueResult();
     }
 
     @Override
