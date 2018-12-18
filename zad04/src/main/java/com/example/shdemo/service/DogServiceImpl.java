@@ -42,10 +42,22 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public void updateDog(Dog dog) {
+        sessionFactory.getCurrentSession().update(dog);
+    }
+
+    @Override
     public void deleteDog(Dog dog) {
         dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dog.getId());
         sessionFactory.getCurrentSession().delete(dog);
 
+    }
+
+    @Override
+    public void addDogToOwner(Long ownerId, Long dogId) {
+        Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class,ownerId);
+        Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dogId);
+        owner.getDogList().add(dog);
     }
 
     @Override
@@ -62,6 +74,11 @@ public class DogServiceImpl implements DogService {
     @Override
     public Owner getOwnerById(Long id) {
         return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getById").setLong("id",id).uniqueResult();
+    }
+
+    @Override
+    public void updateOwner(Owner owner) {
+        sessionFactory.getCurrentSession().update(owner);
     }
 
     @Override
