@@ -42,8 +42,25 @@ public class OwnerServiceTest {
 
     @Test
     public void addOwnerTest(){
-        assertEquals(true,true);
+        List<Owner> owners = ownerService.getAllOwners();
 
+        for(Owner owner : owners){
+            if(owner.getFirstName().equals(OWNER_FNAME))
+                ownerService.deleteOwner(owner);
+        }
+
+        Owner ownerToAdd = new Owner();
+        ownerToAdd.setFirstName(OWNER_FNAME);
+        ownerToAdd.setLastName(OWNER_LNAME);
+        ownerToAdd.setBirthDate(OWNER_BDATE);
+
+        ownerService.addOwner(ownerToAdd);
+
+        Owner addedOwner = ownerService.getOwnerByName(OWNER_FNAME);
+
+        assertEquals(OWNER_FNAME,addedOwner.getFirstName());
+        assertEquals(OWNER_LNAME,addedOwner.getLastName());
+        assertEquals(OWNER_BDATE,addedOwner.getBirthDate());
     }
 
 

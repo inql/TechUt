@@ -11,6 +11,7 @@ public interface OwnerService {
     Long addOwner(Owner owner);
     List getAllOwners();
     Owner getOwnerById(Long id);
+    Owner getOwnerByName(String name);
     void updateOwner(Owner owner);
     void deleteOwner(Owner owner);
 

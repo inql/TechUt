@@ -8,7 +8,8 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "owner.getAll",query = "Select o from Owner o"),
-        @NamedQuery(name = "owner.getById",query = "Select o from Owner o where :id=o.id")
+        @NamedQuery(name = "owner.getById",query = "Select o from Owner o where :id=o.id"),
+        @NamedQuery(name = "owner.getByName",query = "Select o from Owner o where :name=o.name")
 })
 public class Owner {
 
