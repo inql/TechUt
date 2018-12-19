@@ -24,7 +24,7 @@ public class Dog {
     private Date dateOfBirth;
     private List<Toy> toyList = new ArrayList<Toy>();
     private Description description;
-    private Boolean hasOwner;
+    private Boolean hasOwner = false;
 
     @Override
     public String toString() {

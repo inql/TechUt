@@ -27,7 +27,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public void addDogToOwner(Long ownerId, Long dogId) {
-        Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, ownerId);
+        Owner owner = getOwnerById(ownerId);
         Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, dogId);
         if(!dog.getHasOwner()){
             dog.setHasOwner(true);
