@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -28,7 +29,20 @@ public class OwnerServiceImpl implements OwnerService {
     public void addDogToOwner(Long ownerId, Long dogId) {
         Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, ownerId);
         Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, dogId);
-        owner.getDogList().add(dog);
+        if(!dog.getHasOwner()){
+            dog.setHasOwner(true);
+            owner.getDogList().add(dog);
+        }
+    }
+
+    @Override
+    public void deleteDogFromOwner(Long ownerId, Long dogId) {
+        Owner owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, ownerId);
+        Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, dogId);
+        if (owner.getDogList().contains(dog)){
+            owner.getDogList().remove(dog);
+            dog.setHasOwner(false);
+        }
     }
 
     @Override
@@ -66,7 +80,15 @@ public class OwnerServiceImpl implements OwnerService {
         }
 
         sessionFactory.getCurrentSession().delete(owner);
+    }
 
+    @Override
+    public List getAllDogsFromOwner(Owner owner) {
+        List<Dog> result = new ArrayList<Dog>();
+
+        result.addAll(owner.getDogList());
+
+        return result;
 
     }
 }

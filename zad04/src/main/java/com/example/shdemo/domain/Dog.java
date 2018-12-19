@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NamedQueries(
@@ -23,6 +24,7 @@ public class Dog {
     private Date dateOfBirth;
     private List<Toy> toyList = new ArrayList<Toy>();
     private Description description;
+    private Boolean hasOwner;
 
     @Override
     public String toString() {
@@ -103,5 +105,34 @@ public class Dog {
 
     public void setDescription(Description description) {
         this.description = description;
+    }
+
+    public Boolean getHasOwner() {
+        return hasOwner;
+    }
+
+    public void setHasOwner(Boolean hasOwner) {
+        this.hasOwner = hasOwner;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dog dog = (Dog) o;
+        return Objects.equals(id, dog.id) &&
+                Objects.equals(name, dog.name) &&
+                Objects.equals(isVaccinated, dog.isVaccinated) &&
+                Objects.equals(weight, dog.weight) &&
+                Objects.equals(sex, dog.sex) &&
+                Objects.equals(dateOfBirth, dog.dateOfBirth) &&
+                Objects.equals(toyList, dog.toyList) &&
+                Objects.equals(description, dog.description) &&
+                Objects.equals(hasOwner, dog.hasOwner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, isVaccinated, weight, sex, dateOfBirth, toyList, description, hasOwner);
     }
 }
