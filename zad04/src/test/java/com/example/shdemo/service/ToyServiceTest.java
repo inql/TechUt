@@ -83,6 +83,20 @@ public class ToyServiceTest {
         assertEquals(TOY_DESC1,updatedToy.getDescription());
     }
 
+    @Test
+    public void deleteToyTest(){
+        Toy toyToAdd = new Toy();
+        toyToAdd.setName(TOY_NAME1);
+        toyToAdd.setDescription(TOY_DESC1);
+
+        toyService.addToy(toyToAdd);
+        Toy toyToDelete = toyService.getToyByName(TOY_NAME1);
+        toyService.deleteToy(toyToDelete);
+
+        List<Toy> allToys = toyService.getAllToys();
+        assertEquals(0,allToys.size());
+    }
+
 
 
 }
