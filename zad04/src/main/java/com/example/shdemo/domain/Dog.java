@@ -25,6 +25,7 @@ public class Dog {
     private List<Toy> toyList = new ArrayList<Toy>();
     private Description description;
     private Boolean hasOwner = false;
+    private Owner owner;
 
     @Override
     public String toString() {
@@ -105,6 +106,15 @@ public class Dog {
 
     public void setDescription(Description description) {
         this.description = description;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public Boolean getHasOwner() {
