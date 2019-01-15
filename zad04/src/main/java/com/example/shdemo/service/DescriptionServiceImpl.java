@@ -48,7 +48,7 @@ public class DescriptionServiceImpl implements DescriptionService{
 
     @Override
     public Description getDescriptionById(Long descriptionId) {
-        return (Description) sessionFactory.getCurrentSession().getNamedQuery("description.getById").setLong("id",descriptionId).uniqueResult();
+        return (Description) sessionFactory.getCurrentSession().get(Description.class,descriptionId);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DescriptionServiceImpl implements DescriptionService{
 
     @Override
     public void deleteDescription(Description description) {
-        description = (Description) sessionFactory.getCurrentSession().get(Description.class, description.getId());
+        description = (Description) this.getDescriptionById(description.getId());
         if(description.getDog().getId()!=null){
             Dog dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, description.getDog().getId());
             dog.setDescription(null);

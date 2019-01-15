@@ -37,13 +37,4 @@ public class Toy {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<Dog> getDogs() {
-        return dogs;
-    }
-
-    public void setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
-    }
 }

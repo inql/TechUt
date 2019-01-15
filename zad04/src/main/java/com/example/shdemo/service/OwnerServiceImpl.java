@@ -60,7 +60,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner getOwnerById(Long id) {
-        return (Owner) sessionFactory.getCurrentSession().getNamedQuery("owner.getById").setLong("id", id).uniqueResult();
+        return (Owner) sessionFactory.getCurrentSession().get(Owner.class,id);
     }
 
     @Override
