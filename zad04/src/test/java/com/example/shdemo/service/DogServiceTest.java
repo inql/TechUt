@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import com.example.shdemo.domain.Dog;
 
 import com.example.shdemo.domain.Owner;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,8 @@ public class DogServiceTest {
     private final Double DOG2_WEIGHT = 4.9;
     private final Character DOG2_SEX = 'c';
 
-    @Test
-    public void addDogTest(){
-
+    @Before
+    public void setUp(){
         List<Dog> dogList = dogService.getAllDogs();
 
         for (Dog dog: dogList){
@@ -44,7 +44,10 @@ public class DogServiceTest {
                 dogService.deleteDog(dog);
             }
         }
+    }
 
+    @Test
+    public void addDogTest(){
         Dog dogToAdd = new Dog();
         dogToAdd.setName(DOG1_NAME);
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
@@ -63,15 +66,6 @@ public class DogServiceTest {
 
     @Test
     public void updateDogTest(){
-
-        List<Dog> dogList = dogService.getAllDogs();
-
-        for (Dog dog: dogList){
-            if(dog.getName().equals(DOG2_NAME)){
-                dogService.deleteDog(dog);
-            }
-        }
-
         Dog dogToAdd = new Dog();
         dogToAdd.setName(DOG2_NAME);
         dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
@@ -94,15 +88,6 @@ public class DogServiceTest {
 
     @Test
     public void deleteDogTest(){
-
-        List<Dog> dogList = dogService.getAllDogs();
-
-        for (Dog dog: dogList){
-            if(dog.getName().equals(DOG2_NAME) || dog.getName().equals(DOG1_NAME)){
-                dogService.deleteDog(dog);
-            }
-        }
-
         Dog dogToDelete = new Dog();
         dogToDelete.setName(DOG1_NAME);
         dogToDelete.setVaccinated(DOG1_IS_VACCINATED);

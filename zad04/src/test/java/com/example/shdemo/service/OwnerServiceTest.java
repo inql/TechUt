@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.example.shdemo.domain.Dog;
 import com.example.shdemo.domain.Owner;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,8 @@ public class OwnerServiceTest {
     private final String OWNER_LNAME = "Abacki";
     private final Date OWNER_BDATE = new GregorianCalendar(100,10,10).getTime();
 
-    @Test
-    public void addOwnerTest(){
+    @Before
+    public void setUp(){
         List<Owner> owners = ownerService.getAllOwners();
 
         for(Owner owner : owners){
@@ -52,6 +53,18 @@ public class OwnerServiceTest {
                 ownerService.deleteOwner(owner);
         }
 
+        List<Dog> dogList = dogService.getAllDogs();
+
+        for (Dog dog: dogList){
+            if(dog.getName().equals(DOG1_NAME)){
+                dogService.deleteDog(dog);
+            }
+        }
+
+    }
+
+    @Test
+    public void addOwnerTest(){
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);
         ownerToAdd.setLastName(OWNER_LNAME);
@@ -68,13 +81,6 @@ public class OwnerServiceTest {
 
     @Test
     public void updateOwnerTest(){
-        List<Owner> owners = ownerService.getAllOwners();
-
-        for(Owner owner : owners){
-            if(owner.getFirstName().equals(OWNER_FNAME))
-                ownerService.deleteOwner(owner);
-        }
-
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);
         ownerToAdd.setLastName(OWNER_LNAME);
@@ -93,27 +99,11 @@ public class OwnerServiceTest {
 
     @Test
     public void addDogToOwnerTest(){
-        List<Dog> dogList = dogService.getAllDogs();
-
-        for (Dog dog: dogList){
-            if(dog.getName().equals(DOG1_NAME)){
-                dogService.deleteDog(dog);
-            }
-        }
-
         Dog dogToAdd = new Dog();
         dogToAdd.setName(DOG1_NAME);
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
-
-
-        List<Owner> owners = ownerService.getAllOwners();
-
-        for(Owner owner : owners){
-            if(owner.getFirstName().equals(OWNER_FNAME))
-                ownerService.deleteOwner(owner);
-        }
 
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);
@@ -139,14 +129,6 @@ public class OwnerServiceTest {
 
     @Test
     public void removeDogFromOwnerTest(){
-        List<Dog> dogList = dogService.getAllDogs();
-
-        for (Dog dog: dogList){
-            if(dog.getName().equals(DOG1_NAME) || dog.getName().equals(DOG2_NAME)){
-                dogService.deleteDog(dog);
-            }
-        }
-
         Dog dogToRemove = new Dog();
         dogToRemove.setName(DOG1_NAME);
         dogToRemove.setVaccinated(DOG1_IS_VACCINATED);
@@ -158,13 +140,6 @@ public class OwnerServiceTest {
         dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
         dogToAdd.setWeight(DOG2_WEIGHT);
         dogToAdd.setSex(DOG2_SEX);
-
-        List<Owner> owners = ownerService.getAllOwners();
-
-        for(Owner owner : owners){
-            if(owner.getFirstName().equals(OWNER_FNAME))
-                ownerService.deleteOwner(owner);
-        }
 
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);
@@ -203,27 +178,11 @@ public class OwnerServiceTest {
 
     @Test
     public void deleteOwnerTest(){
-        List<Dog> dogList = dogService.getAllDogs();
-
-        for (Dog dog: dogList){
-            if(dog.getName().equals(DOG1_NAME)){
-                dogService.deleteDog(dog);
-            }
-        }
-
         Dog dogToAdd = new Dog();
         dogToAdd.setName(DOG1_NAME);
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
-
-
-        List<Owner> owners = ownerService.getAllOwners();
-
-        for(Owner owner : owners){
-            if(owner.getFirstName().equals(OWNER_FNAME))
-                ownerService.deleteOwner(owner);
-        }
 
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);

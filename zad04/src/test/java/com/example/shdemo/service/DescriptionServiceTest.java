@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.example.shdemo.domain.Description;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,18 @@ public class DescriptionServiceTest {
     private final Double DOG1_WEIGHT = 23.5;
     private final Character DOG1_SEX = 'c';
 
-    @Test
-    public void addDescriptionTest(){
+    @Before
+    public void setUp(){
         List<Description> descriptions = descriptionService.getAllDescriptions();
 
         for(Description description : descriptions){
             if(description.getDescription().equals(DESCRIPTION1))
                 descriptionService.deleteDescription(description);
         }
+    }
 
+    @Test
+    public void addDescriptionTest(){
         Description descriptionToAdd = new Description();
         descriptionToAdd.setDescription(DESCRIPTION1);
         descriptionService.addDescription(descriptionToAdd);
@@ -51,12 +55,6 @@ public class DescriptionServiceTest {
 
     @Test
     public void updateDescriptionTest(){
-        List<Description> descriptions = descriptionService.getAllDescriptions();
-
-        for(Description description : descriptions){
-            if(description.getDescription().equals(DESCRIPTION1))
-                descriptionService.deleteDescription(description);
-        }
         Description descriptionToAdd = new Description();
         descriptionToAdd.setDescription(DESCRIPTION1);
         descriptionService.addDescription(descriptionToAdd);
