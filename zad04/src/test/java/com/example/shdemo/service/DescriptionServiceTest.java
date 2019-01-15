@@ -3,6 +3,7 @@ package com.example.shdemo.service;
 import static org.junit.Assert.assertEquals;
 
 import com.example.shdemo.domain.Description;
+import com.example.shdemo.domain.Dog;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,7 +69,29 @@ public class DescriptionServiceTest {
 
     @Test
     public void addDescriptionToDogTest(){
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG1_NAME);
+        dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
+        dogToAdd.setWeight(DOG1_WEIGHT);
+        dogToAdd.setSex(DOG1_SEX);
 
+        Description descriptionToAdd = new Description();
+        descriptionToAdd.setDescription(DESCRIPTION1);
+        descriptionToAdd.setDog(dogToAdd);
+        dogToAdd.setDescription(descriptionToAdd);
+
+        dogService.addDog(dogToAdd);
+        descriptionService.addDescription(descriptionToAdd);
+
+        Dog addedDog = dogService.getDogByName(DOG1_NAME);
+        Description dogsDescription = addedDog.getDescription();
+
+        assertEquals(DOG1_NAME,addedDog.getName());
+        assertEquals(DOG1_WEIGHT,addedDog.getWeight());
+        assertEquals(DOG1_SEX,addedDog.getSex());
+        assertEquals(DOG1_IS_VACCINATED,addedDog.getVaccinated());
+        assertEquals(DESCRIPTION1,dogsDescription.getDescription());
+        assertEquals(addedDog,dogsDescription.getDog());
     }
 
 }
