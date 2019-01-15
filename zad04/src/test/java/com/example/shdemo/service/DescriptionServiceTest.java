@@ -1,6 +1,7 @@
 package com.example.shdemo.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import com.example.shdemo.domain.Description;
 import com.example.shdemo.domain.Dog;
@@ -92,6 +93,30 @@ public class DescriptionServiceTest {
         assertEquals(DOG1_IS_VACCINATED,addedDog.getVaccinated());
         assertEquals(DESCRIPTION1,dogsDescription.getDescription());
         assertEquals(addedDog,dogsDescription.getDog());
+    }
+
+    @Test
+    public void deleteDescriptionTest(){
+        Description descriptionToRemove = new Description();
+        descriptionToRemove.setDescription(DESCRIPTION1);
+
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG1_NAME);
+        dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
+        dogToAdd.setWeight(DOG1_WEIGHT);
+        dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setDescription(descriptionToRemove);
+        descriptionToRemove.setDog(dogToAdd);
+
+        dogService.addDog(dogToAdd);
+        descriptionService.addDescription(descriptionToRemove);
+
+        descriptionService.deleteDescription(descriptionService.getDescriptionByContents(DESCRIPTION1));
+
+        Dog addedDog = dogService.getDogByName(DOG1_NAME);
+
+        assertNull(addedDog.getDescription());
+
     }
 
 }
