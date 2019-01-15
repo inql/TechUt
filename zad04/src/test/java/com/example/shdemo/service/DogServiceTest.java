@@ -1,8 +1,5 @@
 package com.example.shdemo.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import com.example.shdemo.domain.Dog;
 
 import com.example.shdemo.domain.Owner;
@@ -17,6 +14,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
@@ -201,7 +200,53 @@ public class DogServiceTest {
 
         assertEquals(firstDogsToy,secondDogsToy);
     }
-    
+
+    @Test
+    public void removeToyTest(){
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+
+        dogService.addDog(firstDog);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+
+        dogService.addDog(secondDog);
+
+        Toy toy = new Toy();
+        toy.setName(TOY_NAME1);
+        toy.setDescription(TOY_DESC1);
+
+        toyService.addToy(toy);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+        toy = toyService.getToyByName(TOY_NAME1);
+
+        //assigning same toy to both dogs
+
+        dogService.giveToy(firstDog,toy);
+        dogService.giveToy(secondDog,toy);
+        dogService.removeToy(firstDog,toy);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+
+        assertEquals(0,firstDog.getToyList().size());
+        assertEquals(1,secondDog.getToyList().size());
+
+        Toy secondDogsToy = secondDog.getToyList().get(0);
+
+        assertEquals(secondDogsToy.getName(),TOY_NAME1);
+        assertEquals(secondDogsToy.getDescription(),TOY_DESC1);
+
+    }
 
 
 
