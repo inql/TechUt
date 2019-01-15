@@ -50,6 +50,13 @@ public class DogServiceTest {
                 dogService.deleteDog(dog);
             }
         }
+        List<Toy> allToys = toyService.getAllToys();
+
+        for (Toy toy: allToys){
+            if(toy.getName().equals(TOY_NAME1)){
+                toyService.deleteToy(toy);
+            }
+        }
     }
 
     @Test
