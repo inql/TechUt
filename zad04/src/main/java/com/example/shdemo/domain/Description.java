@@ -1,17 +1,18 @@
 package com.example.shdemo.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "description.getAll", query = "Select o from Description o"),
+        @NamedQuery(name = "description.getById", query = "Select o from Description o where :id=o.id"),
+})
 public class Description {
 
     private Long id;
     private String description;
-
+    private Dog dog;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -26,4 +27,12 @@ public class Description {
 
     public void setDescription(String description){this.description = description;}
 
+    @OneToOne(fetch = FetchType.LAZY)
+    public Dog getDog() {
+        return dog;
+    }
+
+    public void setDog(Dog dog) {
+        this.dog = dog;
+    }
 }
