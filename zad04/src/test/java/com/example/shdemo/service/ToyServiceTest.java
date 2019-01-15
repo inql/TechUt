@@ -29,6 +29,16 @@ public class ToyServiceTest {
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
 
+    private final String DOG1_NAME = "Burek";
+    private final Boolean DOG1_IS_VACCINATED = true;
+    private final Double DOG1_WEIGHT = 23.5;
+    private final Character DOG1_SEX = 'c';
+
+    private final String DOG2_NAME = "Reksio";
+    private final Boolean DOG2_IS_VACCINATED = false;
+    private final Double DOG2_WEIGHT = 4.9;
+    private final Character DOG2_SEX = 'c';
+
     @Before
     public void setUp(){
         List<Toy> allToys = toyService.getAllToys();
@@ -96,6 +106,7 @@ public class ToyServiceTest {
         List<Toy> allToys = toyService.getAllToys();
         assertEquals(0,allToys.size());
     }
+
 
 
 

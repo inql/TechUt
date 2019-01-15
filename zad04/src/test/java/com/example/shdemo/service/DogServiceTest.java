@@ -1,10 +1,12 @@
 package com.example.shdemo.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import com.example.shdemo.domain.Dog;
 
 import com.example.shdemo.domain.Owner;
+import com.example.shdemo.domain.Toy;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +26,11 @@ public class DogServiceTest {
 
     @Autowired
     DogService dogService;
+    @Autowired
+    ToyService toyService;
+
+    private final String TOY_NAME1 = "Bone";
+    private final String TOY_DESC1 = "Description1";
 
     private final String DOG1_NAME = "Burek";
     private final Boolean DOG1_IS_VACCINATED = true;
@@ -116,6 +123,85 @@ public class DogServiceTest {
         assertEquals(DOG2_SEX,remainedDog.getSex());
 
     }
+
+    @Test
+    public void giveToyTest(){
+        Dog dog = new Dog();
+        dog.setName(DOG1_NAME);
+        dog.setVaccinated(DOG1_IS_VACCINATED);
+        dog.setWeight(DOG1_WEIGHT);
+        dog.setSex(DOG1_SEX);
+
+        Toy toy = new Toy();
+        toy.setName(TOY_NAME1);
+        toy.setDescription(TOY_DESC1);
+
+        dogService.addDog(dog);
+        toyService.addToy(toy);
+
+        Dog addedDog = dogService.getDogByName(DOG1_NAME);
+        Toy addedToy = toyService.getToyByName(TOY_NAME1);
+
+        assertNotNull(addedDog);
+        assertNotNull(addedToy);
+
+        dogService.giveToy(addedDog,addedToy);
+
+        addedDog = dogService.getDogByName(DOG1_NAME);
+
+        assertEquals(1,addedDog.getToyList().size());
+
+        addedToy = addedDog.getToyList().get(0);
+
+        assertEquals(TOY_NAME1,addedToy.getName());
+        assertEquals(TOY_DESC1,addedToy.getDescription());
+    }
+
+    @Test
+    public void multipleGiveToyTest(){
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+
+        dogService.addDog(firstDog);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+
+        dogService.addDog(secondDog);
+
+        Toy toy = new Toy();
+        toy.setName(TOY_NAME1);
+        toy.setDescription(TOY_DESC1);
+
+        toyService.addToy(toy);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+        toy = toyService.getToyByName(TOY_NAME1);
+
+        //assigning same toy to both dogs
+
+        dogService.giveToy(firstDog,toy);
+        dogService.giveToy(secondDog,toy);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+
+        assertEquals(1,firstDog.getToyList().size());
+        assertEquals(1,secondDog.getToyList().size());
+
+        Toy firstDogsToy = firstDog.getToyList().get(0);
+        Toy secondDogsToy = secondDog.getToyList().get(0);
+
+        assertEquals(firstDogsToy,secondDogsToy);
+    }
+    
 
 
 

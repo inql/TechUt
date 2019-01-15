@@ -4,6 +4,7 @@ package com.example.shdemo.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -15,7 +16,6 @@ public class Toy {
     private Long id;
     private String name;
     private String description;
-    private List<Dog> dogs;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -40,5 +40,20 @@ public class Toy {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Toy toy = (Toy) o;
+        return id.equals(toy.id) &&
+                name.equals(toy.name) &&
+                description.equals(toy.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description);
     }
 }
