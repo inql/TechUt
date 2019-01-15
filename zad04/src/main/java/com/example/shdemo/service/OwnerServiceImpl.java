@@ -43,8 +43,6 @@ public class OwnerServiceImpl implements OwnerService {
             owner.getDogList().remove(dog);
             dog.setHasOwner(false);
         }
-//        sessionFactory.getCurrentSession().update(dog);
-//        sessionFactory.getCurrentSession().update(owner);
     }
 
     @Override

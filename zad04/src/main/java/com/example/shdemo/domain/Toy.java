@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "toy.getAll",query = "Select o from Toy o"),
+        @NamedQuery(name = "toy.getByName",query = "Select o from Toy o where :name=o.name")
+})
 public class Toy {
 
     private Long id;
