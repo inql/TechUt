@@ -7,6 +7,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "description.getAll", query = "Select o from Description o"),
         @NamedQuery(name = "description.getById", query = "Select o from Description o where :id=o.id"),
+        @NamedQuery(name = "description.getByContents", query = "Select o from Description o where :description=o.description")
 })
 public class Description {
 

@@ -83,6 +83,7 @@ public class OwnerServiceTest {
         ownerService.addOwner(ownerToAdd);
 
         ownerToAdd.setLastName("Babacki");
+        ownerService.updateOwner(ownerToAdd);
         Owner addedOwner = ownerService.getOwnerByName(OWNER_FNAME);
 
         assertEquals(OWNER_FNAME,addedOwner.getFirstName());

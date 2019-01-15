@@ -52,6 +52,11 @@ public class DescriptionServiceImpl implements DescriptionService{
     }
 
     @Override
+    public Description getDescriptionByContents(String content) {
+        return (Description) sessionFactory.getCurrentSession().getNamedQuery("description.getByContents").setString("description",content).uniqueResult();
+    }
+
+    @Override
     public void updateDescription(Description description) {
         sessionFactory.getCurrentSession().update(description);
     }
