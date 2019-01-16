@@ -34,6 +34,8 @@ public class DogServiceTest {
     @Autowired
     OwnerService ownerService;
 
+    private Date BEFORE_DATE;
+
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
 
@@ -62,6 +64,7 @@ public class DogServiceTest {
         try {
             DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
             DOG2_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2011");
+            BEFORE_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2014");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -318,6 +321,40 @@ public class DogServiceTest {
 
         assertEquals(firstDog,firstToyDog);
         assertEquals(secondDog,secondToyDog);
+    }
+
+    @Test
+    public void removeDogsBornBeforeTest(){
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+        firstDog.setDateOfBirth(DOG1_DATE);
+        dogService.addDog(firstDog);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+        secondDog.setDateOfBirth(DOG2_DATE);
+
+        dogService.addDog(secondDog);
+
+        dogService.removeDogsBornBefore(BEFORE_DATE);
+
+        //first dog should be removed
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+        assertNull(firstDog);
+        assertNotNull(secondDog);
+
+        List<Dog> dogs = dogService.getAllDogs();
+        assertEquals(1,dogs.size());
+        assertEquals(secondDog,dogs.get(0));
+
     }
 
     @Test
