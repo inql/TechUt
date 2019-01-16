@@ -50,6 +50,13 @@ public class ToyServiceImpl implements ToyService {
     public void deleteToy(Toy toy) {
         toy = (Toy) sessionFactory.getCurrentSession().get(Toy.class,toy.getId());
         if(toy!=null){
+            List<Dog> dogs = sessionFactory.getCurrentSession().getNamedQuery("dog.getAll").list();
+            for(Dog dog : dogs){
+                if(dog.getToyList().contains(toy)){
+                    dog.getToyList().remove(toy);
+                    sessionFactory.getCurrentSession().update(dog);
+                }
+            }
             sessionFactory.getCurrentSession().delete(toy);
         }
     }

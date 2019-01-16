@@ -25,6 +25,8 @@ public class ToyServiceTest {
 
     @Autowired
     ToyService toyService;
+    @Autowired
+    DogService dogService;
 
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
@@ -46,6 +48,13 @@ public class ToyServiceTest {
         for (Toy toy: allToys){
             if(toy.getName().equals(TOY_NAME1)){
                 toyService.deleteToy(toy);
+            }
+        }
+        List<Dog> dogList = dogService.getAllDogs();
+
+        for (Dog dog: dogList){
+            if(dog.getName().equals(DOG1_NAME)){
+                dogService.deleteDog(dog);
             }
         }
 
@@ -106,6 +115,36 @@ public class ToyServiceTest {
 
         List<Toy> allToys = toyService.getAllToys();
         assertEquals(0,allToys.size());
+    }
+
+    @Test
+    public void deleteToyAssignedToDogTest(){
+        Toy toyToAdd = new Toy();
+        toyToAdd.setName(TOY_NAME1);
+        toyToAdd.setDescription(TOY_DESC1);
+
+        toyService.addToy(toyToAdd);
+        Toy addedToy = toyService.getToyByName(TOY_NAME1);
+
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG1_NAME);
+        dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
+        dogToAdd.setWeight(DOG1_WEIGHT);
+        dogToAdd.setSex(DOG1_SEX);
+        dogService.addDog(dogToAdd);
+
+        Dog addedDog = dogService.getDogByName(DOG1_NAME);
+        dogService.giveToy(addedDog,addedToy);
+
+        toyService.deleteToy(addedToy);
+
+        List<Toy> toys = toyService.getAllToys();
+        assertEquals(0,toys.size());
+        Dog dogAfterDeletionOfToy = dogService.getDogByName(DOG1_NAME);
+        assertNotNull(dogAfterDeletionOfToy);
+        assertEquals(0,dogAfterDeletionOfToy.getToyList().size());
+
+
     }
 
 
