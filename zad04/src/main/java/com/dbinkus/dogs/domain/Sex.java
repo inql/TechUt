@@ -1,4 +1,4 @@
-package com.example.shdemo.domain;
+package com.dbinkus.dogs.domain;
 
 public enum Sex {
 

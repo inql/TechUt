@@ -1,11 +1,11 @@
-package com.example.shdemo.service;
+package com.dbinkus.dogs.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import com.example.shdemo.domain.Description;
-import com.example.shdemo.domain.Dog;
-import com.example.shdemo.domain.Sex;
+import com.dbinkus.dogs.domain.Dog;
+import com.dbinkus.dogs.domain.Sex;
+import com.dbinkus.dogs.domain.Description;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

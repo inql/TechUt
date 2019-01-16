@@ -1,6 +1,6 @@
-package com.example.shdemo.service;
+package com.dbinkus.dogs.service;
 
-import com.example.shdemo.domain.Toy;
+import com.dbinkus.dogs.domain.Toy;
 
 import java.util.List;
 

@@ -1,9 +1,7 @@
-package com.example.shdemo.domain;
+package com.dbinkus.dogs.domain;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity

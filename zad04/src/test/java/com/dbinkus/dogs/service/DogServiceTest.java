@@ -1,7 +1,6 @@
-package com.example.shdemo.service;
+package com.dbinkus.dogs.service;
 
-import com.example.shdemo.domain.*;
-
+import com.dbinkus.dogs.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +34,7 @@ public class DogServiceTest {
     OwnerService ownerService;
 
     private Date BEFORE_DATE;
+    private Date AFTER_DATE;
 
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
@@ -65,6 +65,7 @@ public class DogServiceTest {
             DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
             DOG2_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2011");
             BEFORE_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2014");
+            AFTER_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2014");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -343,6 +344,40 @@ public class DogServiceTest {
         dogService.addDog(secondDog);
 
         dogService.removeDogsBornBefore(BEFORE_DATE);
+
+        //second dog should be removed
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+        assertNull(secondDog);
+        assertNotNull(firstDog);
+
+        List<Dog> dogs = dogService.getAllDogs();
+        assertEquals(1,dogs.size());
+        assertEquals(firstDog,dogs.get(0));
+
+    }
+
+    @Test
+    public void removeDogsBornAfterTest(){
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+        firstDog.setDateOfBirth(DOG1_DATE);
+        dogService.addDog(firstDog);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+        secondDog.setDateOfBirth(DOG2_DATE);
+
+        dogService.addDog(secondDog);
+
+        dogService.removeDogsBornAfter(BEFORE_DATE);
 
         //first dog should be removed
 

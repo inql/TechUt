@@ -1,9 +1,9 @@
-package com.example.shdemo.service;
+package com.dbinkus.dogs.service;
 
-import com.example.shdemo.domain.Breed;
-import com.example.shdemo.domain.Dog;
-import com.example.shdemo.domain.Owner;
-import com.example.shdemo.domain.Toy;
+import com.dbinkus.dogs.domain.Breed;
+import com.dbinkus.dogs.domain.Dog;
+import com.dbinkus.dogs.domain.Owner;
+import com.dbinkus.dogs.domain.Toy;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -68,6 +68,16 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public void removeDogsBornBefore(Date date) {
+        List<Dog> dogs = getAllDogs();
+        for(Dog dog : dogs){
+            if(dog.getDateOfBirth().before(date)){
+                deleteDog(dog);
+            }
+        }
+    }
+
+    @Override
+    public void removeDogsBornAfter(Date date){
         List<Dog> dogs = getAllDogs();
         for(Dog dog : dogs){
             if(dog.getDateOfBirth().after(date)){
