@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 
 import com.example.shdemo.domain.Dog;
+import com.example.shdemo.domain.Sex;
 import com.example.shdemo.domain.Toy;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,12 +35,7 @@ public class ToyServiceTest {
     private final String DOG1_NAME = "Burek";
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
-    private final Character DOG1_SEX = 'c';
-
-    private final String DOG2_NAME = "Reksio";
-    private final Boolean DOG2_IS_VACCINATED = false;
-    private final Double DOG2_WEIGHT = 4.9;
-    private final Character DOG2_SEX = 'c';
+    private final Sex DOG1_SEX = Sex.MALE;
 
     @Before
     public void setUp(){

@@ -2,6 +2,7 @@ package com.example.shdemo.service;
 
 import com.example.shdemo.domain.Dog;
 import com.example.shdemo.domain.Owner;
+import com.example.shdemo.domain.Sex;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -32,12 +32,12 @@ public class OwnerServiceTest {
     private final String DOG1_NAME = "Burek";
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
-    private final Character DOG1_SEX = 'c';
+    private final Sex DOG1_SEX = Sex.MALE;
 
     private final String DOG2_NAME = "Reksio";
     private final Boolean DOG2_IS_VACCINATED = false;
     private final Double DOG2_WEIGHT = 4.9;
-    private final Character DOG2_SEX = 'c';
+    private final Sex DOG2_SEX = Sex.FEMALE;
 
     private final String OWNER_FNAME = "Jan";
     private final String OWNER_LNAME = "Abacki";

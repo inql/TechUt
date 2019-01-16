@@ -20,7 +20,7 @@ public class Dog {
     private String name;
     private Boolean isVaccinated;
     private Double weight;
-    private Character sex;
+    private Sex sex;
     private Date dateOfBirth;
     private List<Toy> toyList = new ArrayList<Toy>();
     private Description description;
@@ -74,11 +74,12 @@ public class Dog {
         this.weight = weight;
     }
 
-    public Character getSex() {
+    @Enumerated(EnumType.STRING)
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(Character sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
