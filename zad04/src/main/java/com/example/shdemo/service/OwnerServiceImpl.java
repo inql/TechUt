@@ -35,6 +35,7 @@ public class OwnerServiceImpl implements OwnerService {
         }
     }
 
+    @Transactional
     @Override
     public void deleteDogFromOwner(Long ownerId, Long dogId) {
         Owner owner = getOwnerById(ownerId);
@@ -71,6 +72,7 @@ public class OwnerServiceImpl implements OwnerService {
         sessionFactory.getCurrentSession().update(owner);
     }
 
+    @Transactional
     @Override
     public void deleteOwner(Owner owner) {
         owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, owner.getId());

@@ -2,7 +2,6 @@ package com.example.shdemo.service;
 
 import com.example.shdemo.domain.Description;
 import com.example.shdemo.domain.Dog;
-import com.example.shdemo.domain.Owner;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -61,6 +60,7 @@ public class DescriptionServiceImpl implements DescriptionService{
         sessionFactory.getCurrentSession().update(description);
     }
 
+    @Transactional
     @Override
     public void deleteDescription(Description description) {
         description = (Description) this.getDescriptionById(description.getId());

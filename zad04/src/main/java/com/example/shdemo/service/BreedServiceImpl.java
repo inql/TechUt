@@ -46,6 +46,7 @@ public class BreedServiceImpl implements BreedService {
         sessionFactory.getCurrentSession().update(breed);
     }
 
+    @Transactional
     @Override
     public void deleteBreed(Breed breed) {
         breed = (Breed) sessionFactory.getCurrentSession().get(Breed.class,breed.getId());

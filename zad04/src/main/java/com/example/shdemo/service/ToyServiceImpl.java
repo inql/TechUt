@@ -46,6 +46,7 @@ public class ToyServiceImpl implements ToyService {
         sessionFactory.getCurrentSession().update(toy);
     }
 
+    @Transactional
     @Override
     public void deleteToy(Toy toy) {
         toy = (Toy) sessionFactory.getCurrentSession().get(Toy.class,toy.getId());

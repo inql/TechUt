@@ -81,6 +81,7 @@ public class DogServiceImpl implements DogService {
         sessionFactory.getCurrentSession().update(dog);
     }
 
+    @Transactional
     @Override
     public void deleteDog(Dog dog) {
         dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dog.getId());
