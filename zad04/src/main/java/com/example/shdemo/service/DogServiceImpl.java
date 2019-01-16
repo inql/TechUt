@@ -1,5 +1,6 @@
 package com.example.shdemo.service;
 
+import com.example.shdemo.domain.Breed;
 import com.example.shdemo.domain.Dog;
 import com.example.shdemo.domain.Owner;
 import com.example.shdemo.domain.Toy;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -35,6 +37,30 @@ public class DogServiceImpl implements DogService {
     @SuppressWarnings("unchecked")
     public List<Dog> getAllDogs() {
         return sessionFactory.getCurrentSession().getNamedQuery("dog.getAll").list();
+    }
+
+    @Override
+    public List getAllDogsWithBreed(Breed breed) {
+        List<Dog> dogs = getAllDogs();
+        List<Dog> result = new ArrayList<>();
+        for(Dog dog: dogs){
+            if(dog.getBreed().equals(breed)){
+                result.add(dog);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List getAllDogsWithToy(Toy toy) {
+        List<Dog> dogs = getAllDogs();
+        List<Dog> result = new ArrayList<>();
+        for(Dog dog: dogs){
+            if(dog.getToyList().contains(toy)){
+                result.add(dog);
+            }
+        }
+        return result;
     }
 
     @Override

@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -33,16 +35,26 @@ public class OwnerServiceTest {
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
     private final Sex DOG1_SEX = Sex.MALE;
+    private Date DOG1_DATE;
+
 
     private final String DOG2_NAME = "Reksio";
     private final Boolean DOG2_IS_VACCINATED = false;
     private final Double DOG2_WEIGHT = 4.9;
     private final Sex DOG2_SEX = Sex.FEMALE;
+    private Date DOG2_DATE;
 
     private final String OWNER_FNAME = "Jan";
     private final String OWNER_LNAME = "Abacki";
     private final Date OWNER_BDATE = new GregorianCalendar(100,10,10).getTime();
-
+    {
+        try {
+            DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
+            DOG2_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2011");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     @Before
     public void setUp(){
         List<Owner> owners = ownerService.getAllOwners();
@@ -103,6 +115,7 @@ public class OwnerServiceTest {
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setDateOfBirth(DOG1_DATE);
 
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);
@@ -123,6 +136,7 @@ public class OwnerServiceTest {
         assertEquals(DOG1_WEIGHT,ownersDog.getWeight());
         assertEquals(DOG1_SEX,ownersDog.getSex());
         assertEquals(DOG1_IS_VACCINATED,ownersDog.getVaccinated());
+        assertEquals(DOG1_DATE,ownersDog.getDateOfBirth());
 
     }
 
@@ -133,12 +147,14 @@ public class OwnerServiceTest {
         dogToRemove.setVaccinated(DOG1_IS_VACCINATED);
         dogToRemove.setWeight(DOG1_WEIGHT);
         dogToRemove.setSex(DOG1_SEX);
+        dogToRemove.setDateOfBirth(DOG1_DATE);
 
         Dog dogToAdd = new Dog();
         dogToAdd.setName(DOG2_NAME);
         dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
         dogToAdd.setWeight(DOG2_WEIGHT);
         dogToAdd.setSex(DOG2_SEX);
+        dogToAdd.setDateOfBirth(DOG2_DATE);
 
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);
@@ -170,6 +186,7 @@ public class OwnerServiceTest {
         assertEquals(DOG2_WEIGHT,ownersDog.getWeight());
         assertEquals(DOG2_SEX,ownersDog.getSex());
         assertEquals(DOG2_IS_VACCINATED,ownersDog.getVaccinated());
+        assertEquals(DOG2_DATE,ownersDog.getDateOfBirth());
         assertEquals(true,ownersDog.getHasOwner());
         assertEquals(false,dogToRemove.getHasOwner());
 
@@ -182,6 +199,7 @@ public class OwnerServiceTest {
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setDateOfBirth(DOG1_DATE);
 
         Owner ownerToAdd = new Owner();
         ownerToAdd.setFirstName(OWNER_FNAME);

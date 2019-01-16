@@ -13,6 +13,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import static org.junit.Assert.*;
 
@@ -33,7 +36,15 @@ public class BreedServiceTest {
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
     private final Sex DOG1_SEX = Sex.MALE;
+    private Date DOG1_DATE;
 
+    {
+        try {
+            DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     @Before
     public void setUp(){
         List<Breed> breeds = breedService.getAllBreeds();
@@ -100,6 +111,7 @@ public class BreedServiceTest {
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setDateOfBirth(DOG1_DATE);
         dogToAdd.setBreed(addedBreed);
 
         dogService.addDog(dogToAdd);

@@ -16,6 +16,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,7 +38,15 @@ public class DescriptionServiceTest {
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
     private final Sex DOG1_SEX = Sex.MALE;
+    private Date DOG1_DATE;
 
+    {
+        try {
+            DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     @Before
     public void setUp(){
         List<Description> descriptions = descriptionService.getAllDescriptions();
@@ -76,6 +87,7 @@ public class DescriptionServiceTest {
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setDateOfBirth(DOG1_DATE);
 
         Description descriptionToAdd = new Description();
         descriptionToAdd.setDescription(DESCRIPTION1);
@@ -92,6 +104,7 @@ public class DescriptionServiceTest {
         assertEquals(DOG1_WEIGHT,addedDog.getWeight());
         assertEquals(DOG1_SEX,addedDog.getSex());
         assertEquals(DOG1_IS_VACCINATED,addedDog.getVaccinated());
+        assertEquals(DOG1_DATE,addedDog.getDateOfBirth());
         assertEquals(DESCRIPTION1,dogsDescription.getDescription());
         assertEquals(addedDog,dogsDescription.getDog());
     }
@@ -107,6 +120,8 @@ public class DescriptionServiceTest {
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
         dogToAdd.setDescription(descriptionToRemove);
+        dogToAdd.setDateOfBirth(DOG1_DATE);
+
         descriptionToRemove.setDog(dogToAdd);
 
         dogService.addDog(dogToAdd);

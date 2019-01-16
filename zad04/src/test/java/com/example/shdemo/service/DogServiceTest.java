@@ -1,5 +1,6 @@
 package com.example.shdemo.service;
 
+import com.example.shdemo.domain.Breed;
 import com.example.shdemo.domain.Dog;
 
 import com.example.shdemo.domain.Sex;
@@ -13,6 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -27,26 +31,46 @@ public class DogServiceTest {
     DogService dogService;
     @Autowired
     ToyService toyService;
+    @Autowired
+    BreedService breedService;
 
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
+
+    private final String TOY_NAME2 = "Ball";
+    private final String TOY_DESC2 = "Description2";
 
     private final String DOG1_NAME = "Burek";
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
     private final Sex DOG1_SEX = Sex.MALE;
+    private Date DOG1_DATE;
 
     private final String DOG2_NAME = "Reksio";
     private final Boolean DOG2_IS_VACCINATED = false;
     private final Double DOG2_WEIGHT = 4.9;
     private final Sex DOG2_SEX = Sex.FEMALE;
+    private Date DOG2_DATE;
+
+    private final String BREED1_NAME = "Kundel";
+    private final String BREED2_NAME = "Labrador";
+
+    {
+        try {
+            DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
+            DOG2_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2011");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Before
     public void setUp(){
         List<Dog> dogList = dogService.getAllDogs();
 
         for (Dog dog: dogList){
-            if(dog.getName().equals(DOG1_NAME)){
+            if(dog.getName().equals(DOG1_NAME) || dog.getName().equals(DOG2_NAME)){
                 dogService.deleteDog(dog);
             }
         }
@@ -57,6 +81,12 @@ public class DogServiceTest {
                 toyService.deleteToy(toy);
             }
         }
+        List<Breed> breeds = breedService.getAllBreeds();
+
+        for(Breed breed : breeds){
+            if(breed.getName().equals(BREED1_NAME) || breed.getName().equals(BREED2_NAME))
+                breedService.deleteBreed(breed);
+        }
     }
 
     @Test
@@ -66,6 +96,7 @@ public class DogServiceTest {
         dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
         dogToAdd.setWeight(DOG1_WEIGHT);
         dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setDateOfBirth(DOG1_DATE);
 
         dogService.addDog(dogToAdd);
 
@@ -75,6 +106,7 @@ public class DogServiceTest {
         assertEquals(DOG1_IS_VACCINATED,addedDog.getVaccinated());
         assertEquals(DOG1_WEIGHT,addedDog.getWeight());
         assertEquals(DOG1_SEX,addedDog.getSex());
+        assertEquals(DOG1_DATE,addedDog.getDateOfBirth());
     }
 
     @Test
@@ -84,6 +116,7 @@ public class DogServiceTest {
         dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
         dogToAdd.setWeight(DOG2_WEIGHT);
         dogToAdd.setSex(DOG2_SEX);
+        dogToAdd.setDateOfBirth(DOG2_DATE);
 
         dogService.addDog(dogToAdd);
 
@@ -96,6 +129,7 @@ public class DogServiceTest {
         assertEquals(true,updatedDog.getVaccinated());
         assertEquals(DOG2_WEIGHT,updatedDog.getWeight());
         assertEquals(DOG2_SEX,updatedDog.getSex());
+        assertEquals(DOG2_DATE,updatedDog.getDateOfBirth());
 
     }
 
@@ -106,6 +140,7 @@ public class DogServiceTest {
         dogToDelete.setVaccinated(DOG1_IS_VACCINATED);
         dogToDelete.setWeight(DOG1_WEIGHT);
         dogToDelete.setSex(DOG1_SEX);
+        dogToDelete.setDateOfBirth(DOG1_DATE);
 
         dogService.addDog(dogToDelete);
 
@@ -114,6 +149,7 @@ public class DogServiceTest {
         dogToAdd.setVaccinated(DOG2_IS_VACCINATED);
         dogToAdd.setWeight(DOG2_WEIGHT);
         dogToAdd.setSex(DOG2_SEX);
+        dogToAdd.setDateOfBirth(DOG2_DATE);
 
         dogService.addDog(dogToAdd);
 
@@ -127,7 +163,127 @@ public class DogServiceTest {
         assertEquals(DOG2_IS_VACCINATED,remainedDog.getVaccinated());
         assertEquals(DOG2_WEIGHT,remainedDog.getWeight());
         assertEquals(DOG2_SEX,remainedDog.getSex());
+        assertEquals(DOG2_DATE,remainedDog.getDateOfBirth());
 
+
+    }
+
+    @Test
+    public void getAllDogsWithBreedTest(){
+        Breed firstBreed = new Breed();
+        firstBreed.setName(BREED1_NAME);
+
+        breedService.addBreed(firstBreed);
+        firstBreed = breedService.getBreedByName(BREED1_NAME);
+        Breed secondBreed = new Breed();
+        secondBreed.setName(BREED2_NAME);
+
+        breedService.addBreed(secondBreed);
+
+        secondBreed = breedService.getBreedByName(BREED2_NAME);
+
+        assertNotNull(firstBreed);
+        assertNotNull(secondBreed);
+
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+        firstDog.setBreed(firstBreed);
+        firstDog.setDateOfBirth(DOG1_DATE);
+
+        dogService.addDog(firstDog);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+        secondDog.setBreed(secondBreed);
+        secondDog.setDateOfBirth(DOG2_DATE);
+
+        dogService.addDog(secondDog);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+
+        assertNotNull(firstDog);
+        assertNotNull(secondDog);
+
+
+        List<Dog> firstBreedDogs = dogService.getAllDogsWithBreed(firstBreed);
+        List<Dog> secondBreedDogs = dogService.getAllDogsWithBreed(secondBreed);
+
+        assertEquals(1,firstBreedDogs.size());
+        assertEquals(1,secondBreedDogs.size());
+
+        Dog firstBreedDog = firstBreedDogs.get(0);
+        Dog secondBreedDog = secondBreedDogs.get(0);
+
+        assertEquals(firstDog,firstBreedDog);
+        assertEquals(secondDog,secondBreedDog);
+    }
+
+    @Test
+    public void getAllDogsWithToyTest(){
+        Toy firstToy = new Toy();
+        firstToy.setName(TOY_NAME1);
+        firstToy.setDescription(TOY_DESC1);
+
+        toyService.addToy(firstToy);
+        firstToy = toyService.getToyByName(TOY_NAME1);
+        Toy secondToy = new Toy();
+        secondToy.setName(TOY_NAME2);
+        secondToy.setDescription(TOY_DESC2);
+
+        toyService.addToy(secondToy);
+        secondToy = toyService.getToyByName(TOY_NAME2);
+
+        assertNotNull(firstToy);
+        assertNotNull(secondToy);
+
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+        firstDog.setDateOfBirth(DOG1_DATE);
+        dogService.addDog(firstDog);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+        secondDog.setDateOfBirth(DOG2_DATE);
+
+        dogService.addDog(secondDog);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+
+        dogService.giveToy(firstDog,firstToy);
+        dogService.giveToy(secondDog,secondToy);
+
+        assertNotNull(firstDog);
+        assertNotNull(secondDog);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+        secondDog = dogService.getDogByName(DOG2_NAME);
+
+
+        List<Dog> firstToyDogs = dogService.getAllDogsWithToy(firstToy);
+        List<Dog> secondToyDogs = dogService.getAllDogsWithToy(secondToy);
+
+        assertEquals(1,firstToyDogs.size());
+        assertEquals(1,secondToyDogs.size());
+
+        Dog firstToyDog = firstToyDogs.get(0);
+        Dog secondToyDog = secondToyDogs.get(0);
+
+        assertEquals(firstDog,firstToyDog);
+        assertEquals(secondDog,secondToyDog);
     }
 
     @Test
@@ -137,6 +293,7 @@ public class DogServiceTest {
         dog.setVaccinated(DOG1_IS_VACCINATED);
         dog.setWeight(DOG1_WEIGHT);
         dog.setSex(DOG1_SEX);
+        dog.setDateOfBirth(DOG1_DATE);
 
         Toy toy = new Toy();
         toy.setName(TOY_NAME1);
@@ -170,6 +327,7 @@ public class DogServiceTest {
         firstDog.setVaccinated(DOG1_IS_VACCINATED);
         firstDog.setWeight(DOG1_WEIGHT);
         firstDog.setSex(DOG1_SEX);
+        firstDog.setDateOfBirth(DOG1_DATE);
 
         dogService.addDog(firstDog);
 
@@ -178,6 +336,7 @@ public class DogServiceTest {
         secondDog.setVaccinated(DOG2_IS_VACCINATED);
         secondDog.setWeight(DOG2_WEIGHT);
         secondDog.setSex(DOG2_SEX);
+        secondDog.setDateOfBirth(DOG2_DATE);
 
         dogService.addDog(secondDog);
 
@@ -215,6 +374,7 @@ public class DogServiceTest {
         firstDog.setVaccinated(DOG1_IS_VACCINATED);
         firstDog.setWeight(DOG1_WEIGHT);
         firstDog.setSex(DOG1_SEX);
+        firstDog.setDateOfBirth(DOG1_DATE);
 
         dogService.addDog(firstDog);
 
@@ -223,6 +383,7 @@ public class DogServiceTest {
         secondDog.setVaccinated(DOG2_IS_VACCINATED);
         secondDog.setWeight(DOG2_WEIGHT);
         secondDog.setSex(DOG2_SEX);
+        secondDog.setDateOfBirth(DOG2_DATE);
 
         dogService.addDog(secondDog);
 
