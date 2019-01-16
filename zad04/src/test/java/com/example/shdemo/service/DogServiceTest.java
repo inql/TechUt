@@ -1,10 +1,7 @@
 package com.example.shdemo.service;
 
-import com.example.shdemo.domain.Breed;
-import com.example.shdemo.domain.Dog;
+import com.example.shdemo.domain.*;
 
-import com.example.shdemo.domain.Sex;
-import com.example.shdemo.domain.Toy;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -33,6 +31,8 @@ public class DogServiceTest {
     ToyService toyService;
     @Autowired
     BreedService breedService;
+    @Autowired
+    OwnerService ownerService;
 
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
@@ -55,6 +55,9 @@ public class DogServiceTest {
     private final String BREED1_NAME = "Kundel";
     private final String BREED2_NAME = "Labrador";
 
+    private final String OWNER_FNAME = "Jan";
+    private final String OWNER_LNAME = "Abacki";
+    private final Date OWNER_BDATE = new GregorianCalendar(100,10,10).getTime();
     {
         try {
             DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
@@ -165,6 +168,37 @@ public class DogServiceTest {
         assertEquals(DOG2_SEX,remainedDog.getSex());
         assertEquals(DOG2_DATE,remainedDog.getDateOfBirth());
 
+
+    }
+
+    @Test
+    public void deleteDogWithOwnerAssociatedTest(){
+        Dog dogToDelete = new Dog();
+        dogToDelete.setName(DOG1_NAME);
+        dogToDelete.setVaccinated(DOG1_IS_VACCINATED);
+        dogToDelete.setWeight(DOG1_WEIGHT);
+        dogToDelete.setSex(DOG1_SEX);
+        dogToDelete.setDateOfBirth(DOG1_DATE);
+
+        dogService.addDog(dogToDelete);
+
+        Owner ownerToAdd = new Owner();
+        ownerToAdd.setFirstName(OWNER_FNAME);
+        ownerToAdd.setLastName(OWNER_LNAME);
+        ownerToAdd.setBirthDate(OWNER_BDATE);
+
+        ownerService.addOwner(ownerToAdd);
+
+        dogToDelete = dogService.getDogByName(DOG1_NAME);
+        ownerToAdd = ownerService.getOwnerByName(OWNER_FNAME);
+
+        ownerService.addDogToOwner(ownerToAdd.getId(),dogToDelete.getId());
+
+        dogService.deleteDog(dogToDelete);
+
+        ownerToAdd = ownerService.getOwnerByName(OWNER_FNAME);
+
+        assertEquals(0,ownerToAdd.getDogList().size());
 
     }
 

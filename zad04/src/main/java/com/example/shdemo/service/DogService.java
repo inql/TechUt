@@ -5,6 +5,7 @@ import com.example.shdemo.domain.Dog;
 import com.example.shdemo.domain.Owner;
 import com.example.shdemo.domain.Toy;
 
+import java.util.Date;
 import java.util.List;
 
 public interface DogService {
@@ -14,6 +15,7 @@ public interface DogService {
     List getAllDogsWithBreed(Breed breed);
     List getAllDogsWithToy(Toy toy);
     Dog getDogByName(String name);
+    void removeDogsBornBefore(Date date);
     void updateDog(Dog dog);
     void deleteDog(Dog dog);
     void giveToy(Dog dog, Toy toy);

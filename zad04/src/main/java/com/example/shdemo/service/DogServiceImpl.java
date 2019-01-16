@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -69,6 +70,16 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
+    public void removeDogsBornBefore(Date date) {
+        List<Dog> dogs = getAllDogs();
+        for(Dog dog : dogs){
+            if(dog.getDateOfBirth().after(date)){
+                deleteDog(dog);
+            }
+        }
+    }
+
+    @Override
     public void updateDog(Dog dog) {
         sessionFactory.getCurrentSession().update(dog);
     }
@@ -76,6 +87,14 @@ public class DogServiceImpl implements DogService {
     @Override
     public void deleteDog(Dog dog) {
         dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class,dog.getId());
+        List<Owner> owners = sessionFactory.getCurrentSession().getNamedQuery("owner.getAll").list();
+        for (Owner owner :
+                owners) {
+            if(owner.getDogList().contains(dog)){
+                owner.getDogList().remove(dog);
+                sessionFactory.getCurrentSession().update(owner);
+            }
+        }
         sessionFactory.getCurrentSession().delete(dog);
 
     }
