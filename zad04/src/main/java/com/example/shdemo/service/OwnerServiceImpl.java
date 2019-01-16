@@ -76,7 +76,8 @@ public class OwnerServiceImpl implements OwnerService {
         owner = (Owner) sessionFactory.getCurrentSession().get(Owner.class, owner.getId());
         for (Dog dog : owner.getDogList()) {
             dog = (Dog) sessionFactory.getCurrentSession().get(Dog.class, dog.getId());
-            sessionFactory.getCurrentSession().delete(dog);
+            dog.setHasOwner(false);
+            sessionFactory.getCurrentSession().update(dog);
         }
 
         sessionFactory.getCurrentSession().delete(owner);

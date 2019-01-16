@@ -55,7 +55,7 @@ public class Owner {
         this.birthDate = birthDate;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     public List<Dog> getDogList() {
         return dogList;
     }

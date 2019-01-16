@@ -1,8 +1,5 @@
 package com.example.shdemo.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import com.example.shdemo.domain.Dog;
 import com.example.shdemo.domain.Owner;
 import org.junit.Before;
@@ -18,6 +15,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
@@ -195,8 +194,12 @@ public class OwnerServiceTest {
 
         ownerService.deleteOwner(ownerToAdd);
 
-        assertEquals(ownerService.getAllOwners().size(),0);
-        assertEquals(dogService.getAllDogs().size(),0);
+        Dog dogWithoutOwner = dogService.getDogByName(DOG1_NAME);
+
+        assertNotNull(dogWithoutOwner);
+        assertEquals(0,ownerService.getAllOwners().size());
+        assertEquals(1,dogService.getAllDogs().size());
+        assertEquals(false,dogWithoutOwner.getHasOwner());
     }
 
 
