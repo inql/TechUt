@@ -11,7 +11,8 @@ import java.util.Objects;
 @NamedQueries(
         {
                 @NamedQuery(name = "dog.getAll",query = "Select d from Dog d"),
-                @NamedQuery(name = "dog.getByName", query = "Select d from Dog d where d.name = :name")
+                @NamedQuery(name = "dog.getByName", query = "Select d from Dog d where d.name = :name"),
+                @NamedQuery(name = "dog.getByBreed", query = "Select d from Dog d where d.breed.id = :id")
         }
 )
 public class Dog {

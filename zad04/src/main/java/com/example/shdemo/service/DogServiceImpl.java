@@ -42,14 +42,11 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public List getAllDogsWithBreed(Breed breed) {
-        List<Dog> dogs = getAllDogs();
-        List<Dog> result = new ArrayList<>();
-        for(Dog dog: dogs){
-            if(dog.getBreed().equals(breed)){
-                result.add(dog);
-            }
+        breed = (Breed) sessionFactory.getCurrentSession().get(Breed.class,breed.getId());
+        if(breed!=null){
+            return sessionFactory.getCurrentSession().getNamedQuery("dog.getByBreed").setLong("id",breed.getId()).list();
         }
-        return result;
+        return null;
     }
 
     @Override
