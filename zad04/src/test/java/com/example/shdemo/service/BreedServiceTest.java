@@ -3,6 +3,7 @@ package com.example.shdemo.service;
 
 import com.example.shdemo.domain.Breed;
 import com.example.shdemo.domain.Description;
+import com.example.shdemo.domain.Dog;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,7 +55,65 @@ public class BreedServiceTest {
         assertNotNull(addedBreed);
         assertEquals(BREED1_NAME,addedBreed.getName());
         assertEquals(1,breedService.getAllBreeds().size());
+    }
 
+    @Test
+    public void updateBreedTest() {
+        Breed breedToAdd = new Breed();
+        breedToAdd.setName(BREED1_NAME);
+
+        breedService.addBreed(breedToAdd);
+        Breed addedBreed = breedService.getBreedByName(BREED1_NAME);
+        addedBreed.setName("New name");
+        breedService.updateBreed(breedToAdd);
+
+        Breed updatedBreed = breedService.getBreedByName("New name");
+        assertNotNull(updatedBreed);
+        assertEquals("New name", updatedBreed.getName());
+        assertEquals(1, breedService.getAllBreeds().size());
+    }
+
+    @Test
+    public void deleteBreedTest(){
+        Breed breedToAdd = new Breed();
+        breedToAdd.setName(BREED1_NAME);
+
+        breedService.addBreed(breedToAdd);
+        Breed addedBreed = breedService.getBreedByName(BREED1_NAME);
+        breedService.deleteBreed(addedBreed);
+
+        List<Breed> breeds = breedService.getAllBreeds();
+
+        assertEquals(0,breeds.size());
+    }
+
+    @Test
+    public void deleteBreedWithDogAssignedTest(){
+        Breed breedToAdd = new Breed();
+        breedToAdd.setName(BREED1_NAME);
+
+        breedService.addBreed(breedToAdd);
+        Breed addedBreed = breedService.getBreedByName(BREED1_NAME);
+
+        Dog dogToAdd = new Dog();
+        dogToAdd.setName(DOG1_NAME);
+        dogToAdd.setVaccinated(DOG1_IS_VACCINATED);
+        dogToAdd.setWeight(DOG1_WEIGHT);
+        dogToAdd.setSex(DOG1_SEX);
+        dogToAdd.setBreed(addedBreed);
+
+        dogService.addDog(dogToAdd);
+
+        Dog addedDog = dogService.getDogByName(DOG1_NAME);
+
+        assertEquals(breedToAdd,addedDog.getBreed());
+        breedService.deleteBreed(addedBreed);
+
+        List<Breed> breeds = breedService.getAllBreeds();
+        List<Dog> dogs = dogService.getAllDogs();
+
+        assertEquals(0,dogs.size());
+        assertEquals(0,breeds.size());
 
     }
 
