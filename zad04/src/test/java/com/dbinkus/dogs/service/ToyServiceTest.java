@@ -35,14 +35,29 @@ public class ToyServiceTest {
     private final String TOY_NAME1 = "Bone";
     private final String TOY_DESC1 = "Description1";
 
+    private final String TOY_NAME2 = "Ball";
+    private final String TOY_DESC2 = "Description2";
+
     private final String DOG1_NAME = "Burek";
     private final Boolean DOG1_IS_VACCINATED = true;
     private final Double DOG1_WEIGHT = 23.5;
     private final Sex DOG1_SEX = Sex.MALE;
     private Date DOG1_DATE;
+
+    private final String DOG2_NAME = "Reksio";
+    private final Boolean DOG2_IS_VACCINATED = false;
+    private final Double DOG2_WEIGHT = 4.9;
+    private final Sex DOG2_SEX = Sex.FEMALE;
+    private Date DOG2_DATE;
+
+    private final String BREED1_NAME = "Kundel";
+    private final String BREED2_NAME = "Labrador";
+
     {
         try {
             DOG1_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2018");
+            DOG2_DATE = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2011");
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -107,6 +122,56 @@ public class ToyServiceTest {
 
         assertEquals("Ball",updatedToy.getName());
         assertEquals(TOY_DESC1,updatedToy.getDescription());
+    }
+
+    @Test
+    public void countToysOfTheSameTypeTest(){
+        Toy firstToy = new Toy();
+        firstToy.setName(TOY_NAME1);
+        firstToy.setDescription(TOY_DESC1);
+
+        toyService.addToy(firstToy);
+
+        Toy secondToy = new Toy();
+        secondToy.setName(TOY_NAME2);
+        secondToy.setDescription(TOY_DESC2);
+
+        toyService.addToy(secondToy);
+
+        firstToy = toyService.getToyByName(TOY_NAME1);
+        secondToy = toyService.getToyByName(TOY_NAME2);
+
+        Dog firstDog = new Dog();
+        firstDog.setName(DOG1_NAME);
+        firstDog.setVaccinated(DOG1_IS_VACCINATED);
+        firstDog.setWeight(DOG1_WEIGHT);
+        firstDog.setSex(DOG1_SEX);
+        firstDog.setDateOfBirth(DOG1_DATE);
+
+        dogService.addDog(firstDog);
+
+        firstDog = dogService.getDogByName(DOG1_NAME);
+
+        Dog secondDog = new Dog();
+        secondDog.setName(DOG2_NAME);
+        secondDog.setVaccinated(DOG2_IS_VACCINATED);
+        secondDog.setWeight(DOG2_WEIGHT);
+        secondDog.setSex(DOG2_SEX);
+        secondDog.setDateOfBirth(DOG2_DATE);
+
+        dogService.addDog(secondDog);
+
+        secondDog = dogService.getDogByName(DOG2_NAME);
+
+        dogService.giveToy(firstDog,firstToy);
+        dogService.giveToy(firstDog,secondToy);
+        dogService.giveToy(secondDog,secondToy);
+
+        Long firstToyCount = toyService.countToysOfTheSameType(firstToy);
+        Long secondToyCount = toyService.countToysOfTheSameType(secondToy);
+
+        assertEquals(1L, (long)firstToyCount);
+        assertEquals(2L,(long)secondToyCount);
     }
 
     @Test

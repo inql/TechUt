@@ -44,7 +44,8 @@ public class DogServiceImpl implements DogService {
     public List getAllDogsWithBreed(Breed breed) {
         breed = (Breed) sessionFactory.getCurrentSession().get(Breed.class,breed.getId());
         if(breed!=null){
-            return sessionFactory.getCurrentSession().getNamedQuery("dog.getByBreed").setLong("id",breed.getId()).list();
+            return sessionFactory.getCurrentSession().getNamedQuery("dog.getByBreedName").setString("name",breed.getName()).list();
+//            return sessionFactory.getCurrentSession().getNamedQuery("dog.getByBreed").setLong("id",breed.getId()).list();
         }
         return null;
     }
@@ -66,6 +67,7 @@ public class DogServiceImpl implements DogService {
         return (Dog) sessionFactory.getCurrentSession().getNamedQuery("dog.getByName").setString("name",name).uniqueResult();
     }
 
+    @Transactional
     @Override
     public void removeDogsBornBefore(Date date) {
         List<Dog> dogs = getAllDogs();
@@ -76,6 +78,7 @@ public class DogServiceImpl implements DogService {
         }
     }
 
+    @Transactional
     @Override
     public void removeDogsBornAfter(Date date){
         List<Dog> dogs = getAllDogs();

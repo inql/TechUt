@@ -42,6 +42,21 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
+    public Long countToysOfTheSameType(Toy toy){
+        toy = (Toy) sessionFactory.getCurrentSession().get(Toy.class,toy.getId());
+        Long result = 0L;
+        if(toy!=null){
+            List<Dog> dogs = sessionFactory.getCurrentSession().getNamedQuery("dog.getAll").list();
+            for(Dog dog: dogs){
+                if(dog.getToyList().contains(toy)){
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
     public void updateToy(Toy toy) {
         sessionFactory.getCurrentSession().update(toy);
     }
